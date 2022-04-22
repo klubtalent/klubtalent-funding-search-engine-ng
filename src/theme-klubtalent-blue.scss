@@ -1,0 +1,43 @@
+@use '~@angular/material' as mat;
+
+$color-blue : #000033;
+$color-blue : hsl(240, 100%, 10%);
+
+$klubtalent-blue: (
+  50: hsl(240, 100%, 100%),
+  100: hsl(240, 100%, 90%),
+  200: hsl(240, 100%, 80%),
+  300: hsl(240, 100%, 70%),
+  400: hsl(240, 100%, 60%),
+  500: hsl(240, 100%, 50%),
+  600: hsl(240, 100%, 40%),
+  700: hsl(240, 100%, 30%),
+  800: hsl(240, 100%, 20%),
+  900: hsl(240, 100%, 10%),
+  A100: $color-blue,
+  A200: $color-blue,
+  A400: $color-blue,
+  A700: $color-blue,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$klubtalent-blue-primary: mat.define-palette($klubtalent-blue, 500, 400, 600);
+$klubtalent-blue-accent: mat.define-palette($klubtalent-blue, 700, 600, 800);
+$klubtalent-blue-warn: mat.define-palette(mat.$red-palette);
+
+$klubtalent-blue-theme: mat.define-light-theme($klubtalent-blue-primary, $klubtalent-blue-accent, $klubtalent-blue-warn);
