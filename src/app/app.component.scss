@@ -1,0 +1,16 @@
+@use '~@angular/material' as mat;
+
+@include mat.core();
+@import '../theme-klubtalent-blue';
+
+.klubtalent-blue-theme {
+  @include mat.all-component-themes($klubtalent-blue-theme);
+
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+  }
+
+  .mat-toolbar {
+    background: white;
+  }
+}
