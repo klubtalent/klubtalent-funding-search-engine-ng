@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable, Subject} from "rxjs";
+import {Funding} from "../model/funding";
 
 interface CmsOverview {
   sha: string,
@@ -71,15 +72,77 @@ export class ContentLoaderService {
   }
 
   /**
-   * Loads items from CMS
+   * Removes square brackets from given value
+   * @param value value
    */
-  loadItems(): Observable<any> {
-    const items = new Subject<any>();
+  private static replaceBrackets(value: string) {
+    return value.replace(/['"]+/g, '');
+  }
+
+  /**
+   * Checks if a value is not empty
+   * @param value value
+   */
+  private static isNotEmpty(value: string) {
+    return value.length > 0;
+  }
+
+  /**
+   * Parses funding item from content string
+   * @param content content string
+   */
+  private parseContent(content: string): Funding {
+    const funding = new Funding();
+    content.split("\n").forEach((line: string) => {
+      const lineItems = line.split("=");
+
+      if (lineItems.length === 2) {
+        const key = lineItems[0].trim();
+        const value = lineItems[1].trim();
+
+        if (key === 'name') {
+          funding.name = value.replace(/['"]+/g, '');
+        }
+        if (key === 'region') {
+          funding.region = value.replace(/['"]+/g, '');
+        }
+        if (key === 'sport') {
+          funding.sport = value.replace(/[\[\]']+/g, '')
+            .split(",")
+            .map(ContentLoaderService.replaceBrackets)
+            .filter(ContentLoaderService.isNotEmpty);
+        }
+        if (key === 'type') {
+          funding.type = value.replace(/[\[\]']+/g, '')
+            .split(",")
+            .map(ContentLoaderService.replaceBrackets)
+            .filter(ContentLoaderService.isNotEmpty);
+        }
+        if (key === 'volume') {
+          funding.volume = +value;
+        }
+        if (key === 'text') {
+          funding.text = value.replace(/['"]+/g, '');
+        }
+      }
+    });
+
+    return funding;
+  }
+
+  /**
+   * Loads funding items from CMS
+   */
+  loadFundingItems(): Observable<Funding> {
+    const items = new Subject<Funding>();
 
     this.loadCmsOverview().subscribe((cmsOverview: CmsOverview) => {
       cmsOverview.tree.forEach(item => {
         this.loadFileContent(item.path).subscribe((itemContent: ItemContent) => {
-          items.next(atob(itemContent.content));
+          const content: string = atob(itemContent.content);
+          const funding: Funding = this.parseContent(content);
+
+          items.next(funding);
         });
       });
     });
