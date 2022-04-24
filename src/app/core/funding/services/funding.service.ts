@@ -259,6 +259,10 @@ export class FundingService {
         if (key === 'text') {
           funding.text = value.replace(/['"]+/g, '');
         }
+        if (key === 'image') {
+          funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;
+          console.log(`${environment.cmsUploadUrl}${value.replace(/"/g, "")}`);
+        }
       }
     });
 

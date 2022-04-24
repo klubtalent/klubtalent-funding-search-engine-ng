@@ -17,4 +17,6 @@ export class Funding {
   volume: number = 0;
   /** Text */
   text: string = '';
+  /** Image */
+  image: string = '';
 }
