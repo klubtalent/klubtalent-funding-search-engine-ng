@@ -3,6 +3,8 @@
  */
 export class Funding {
 
+  /** ID */
+  id: string = '';
   /** Name */
   name: string = '';
   /** Region */

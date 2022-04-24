@@ -4,26 +4,111 @@ import {environment} from "../../../../environments/environment";
 import {Observable, Subject} from "rxjs";
 import {Funding} from "../model/funding";
 
-interface CmsOverview {
+interface Branch {
+  name: string,
+  commit: {
+    sha: string,
+    node_id: string,
+    commit: {
+      author: {
+        "name": string,
+        "email": string,
+        "date": string,
+      },
+      "committer": {
+        "name": string,
+        "email": string,
+        "date": string
+      },
+      "message": string,
+      "tree": {
+        "sha": string,
+        "url": string,
+      },
+      "url": string,
+      "comment_count": number,
+      "verification": {
+        "verified": boolean,
+        "reason": string,
+        "signature": {},
+        "payload": {}
+      }
+    },
+    url: string,
+    html_url: string,
+    comments_url: string,
+    author: {
+      login: string,
+      id: number,
+      node_id: string,
+      avatar_url: string,
+      gravatar_id: string,
+      url: string,
+      html_url: string,
+      followers_url: string,
+      following_url: string,
+      gists_url: string,
+      starred_url: string,
+      subscriptions_url: string,
+      organizations_url: string,
+      repos_url: string,
+      events_url: string,
+      received_events_url: string,
+      type: string,
+      site_admin: boolean
+    },
+    committer: string,
+    parents: {
+      sha: string,
+      url: string,
+      html_url: string
+    }[]
+  },
+  _links: {
+    self: string,
+    git: string,
+    html: string,
+  }
+  protected: boolean,
+  protection: {
+    enabled: boolean
+    required_status_checks: {
+      enforcement_level: string,
+      contexts: [],
+      checks: []
+    }
+  },
+  protectionUrl: string
+}
+
+interface Tree {
   sha: string,
   url: string,
-  tree: Item[],
+  tree: {
+    path: string,
+    mode: string,
+    type: string,
+    sha: string,
+    url: string,
+  }[],
   truncated: boolean
 }
 
-interface Item {
+interface ItemContent {
+  name: string,
   path: string,
-  mode: string,
-  type: string,
   sha: string,
   size: number,
   url: string,
-}
-
-interface Links {
-  self: string,
-  git: string,
-  html: string,
+  html_url: string,
+  git_url: string,
+  download_url: string,
+  type: string,
+  _links: {
+    self: string,
+    git: string,
+    html: string,
+  }
 }
 
 interface ItemContent {
@@ -38,8 +123,13 @@ interface ItemContent {
   type: string,
   content: string,
   encoding: string,
-  _links: Links,
+  _links: {
+    self: string,
+    git: string,
+    html: string,
+  }
 }
+
 
 /**
  * Loads funding from CMS
@@ -62,13 +152,23 @@ export class FundingService {
    * Fetches funding items from CMS
    */
   fetchFundings() {
-    this.loadCmsOverview().subscribe((cmsOverview: CmsOverview) => {
-      cmsOverview.tree.forEach(item => {
-        this.loadFileContent(item.path).subscribe((itemContent: ItemContent) => {
-          const content: string = atob(itemContent.content);
-          const funding: Funding = this.parseContent(content);
+    this.loadBranch(environment.cmsContentBranch).subscribe((branch: Branch) => {
+      const commitSha = branch.commit.sha;
 
-          this.fundingsSubject.next(funding);
+      this.loadTree(commitSha).subscribe((tree: Tree) => {
+        const contentCommitSha = tree.tree.filter(item => {
+          return item.path === environment.cmsContentPath
+        })[0].sha;
+
+        this.loadTree(contentCommitSha).subscribe((tree: Tree) => {
+          tree.tree.forEach(item => {
+              this.loadFileContent(`${environment.cmsContentPath}/${item.path}`).subscribe((itemContent: ItemContent) => {
+                const content: string = atob(itemContent.content);
+                const funding: Funding = this.parseContent(item.path, content);
+
+                this.fundingsSubject.next(funding);
+              });
+            });
         });
       });
     });
@@ -79,15 +179,24 @@ export class FundingService {
   //
 
   /**
-   * Loads list of files of git repository
+   * Loads a branch
+   * @param branch branch name
    */
-  private loadCmsOverview(): Observable<CmsOverview> {
-    return this.http.get<CmsOverview>(environment.cmsOverviewUrl);
+  private loadBranch(branch: string): Observable<Branch> {
+    return this.http.get<Branch>(`${environment.cmsBranchUrl}/${branch}`);
   }
 
   /**
-   * Loads funding of a given file
-   * @param path file name
+   * Loads a tree
+   * @param commitSha commit SHA
+   */
+  private loadTree(commitSha: string): Observable<Tree> {
+    return this.http.get<Tree>(`${environment.cmsTreeUrl}/${commitSha}`);
+  }
+
+  /**
+   * Loads a file
+   * @param path file path
    */
   private loadFileContent(path: string): Observable<ItemContent> {
     return this.http.get<ItemContent>(`${environment.cmsContentUrl}/${path}`);
@@ -111,10 +220,14 @@ export class FundingService {
 
   /**
    * Parses funding item from funding string
+   * @param id funding ID
    * @param content funding string
    */
-  private parseContent(content: string): Funding {
+  private parseContent(id: string, content: string): Funding {
     const funding = new Funding();
+
+    funding.id = id;
+
     content.split("\n").forEach((line: string) => {
       const lineItems = line.split("=");
 
