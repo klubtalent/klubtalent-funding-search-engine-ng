@@ -6,6 +6,8 @@ import {FundingListItemComponent} from "./components/funding-list-item/funding-l
 import {MatCardModule} from "@angular/material/card";
 import {OverviewRoutingModule} from "./overview-routing.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {TagChipsModule} from "../../ui/tag-chips/tag-chips.module";
+import {UiModule} from "../../core/ui/ui.module";
 
 
 @NgModule({
@@ -19,6 +21,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 
     MatCardModule,
     MatDialogModule,
+
+    UiModule,
+    TagChipsModule,
 
     OverviewRoutingModule
   ]

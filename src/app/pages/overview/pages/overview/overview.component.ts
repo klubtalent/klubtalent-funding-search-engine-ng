@@ -8,6 +8,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {Funding} from "../../../../core/funding/model/funding";
 import {FundingService} from "../../../../core/funding/services/funding.service";
 import {filter, takeUntil} from "rxjs/operators";
+import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
+import {PaletteType} from "../../../../core/ui/model/palette-type.enum";
+import {HueType} from "../../../../core/ui/model/hue-type.enum";
 
 /**
  * Displays overview page
@@ -37,6 +40,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   /** Map of fundings */
   public fundingsMap = new Map<string, Funding>();
 
+  /** Background color for sport */
+  public sportBackgroundColor = 'transparent';
+  /** Text color for sport */
+  public sportTextColor = 'black';
+
   /** State of the search panel */
   searchPanelState = 'closed';
 
@@ -48,12 +56,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * @param dialog dialog
    * @param fundingService funding service
    * @param iconRegistry icon registry
+   * @param materialColorService Material color service
    * @param router router
    * @param sanitizer sanitizer
    */
   constructor(private dialog: MatDialog,
               private fundingService: FundingService,
               private iconRegistry: MatIconRegistry,
+              private materialColorService: MaterialColorService,
               private router: Router,
               private sanitizer: DomSanitizer) {
   }
@@ -66,6 +76,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * Handles on-init lifecycle phase
    */
   ngOnInit() {
+    this.initializeMaterialColors();
     this.initializeSubscriptions();
     this.findEntities();
   }
@@ -100,6 +111,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
   private initializeFundings(funding: Funding) {
     this.fundingsMap.set(funding.id, funding);
     this.fundingsMap = new Map(this.fundingsMap);
+  }
+
+  /**
+   * Initializes material colors
+   */
+  private initializeMaterialColors() {
+    this.sportBackgroundColor = this.materialColorService.color(PaletteType.KLUBTALENT_BLUE, HueType._500);
+    this.sportTextColor = this.materialColorService.contrast(PaletteType.KLUBTALENT_BLUE, HueType._500);
   }
 
   //

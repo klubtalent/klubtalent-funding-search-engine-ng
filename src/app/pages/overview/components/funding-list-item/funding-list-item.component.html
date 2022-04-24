@@ -5,5 +5,9 @@
     <mat-card-content>
       {{ funding?.text }}
     </mat-card-content>
+    <mat-card-actions>
+      <app-tag-chips [tags]="funding?.sport" [icons]="sportIcons" [readonly]="true" [background]="sportBackgroundColor" [color]="sportTextColor"
+                     [collapsedText]="sportCollapsedText"></app-tag-chips>
+    </mat-card-actions>
   </mat-card>
 </div>

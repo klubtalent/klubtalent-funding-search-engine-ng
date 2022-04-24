@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import {Funding} from "../../../../core/funding/model/funding";
 
 /**
- * Displays a project list
+ * Displays a funding list
  */
 @Component({
   selector: 'app-funding-list',
@@ -13,12 +13,17 @@ export class FundingListComponent implements OnChanges {
 
   /** Map of projects */
   @Input() fundingsMap = new Map<string, Funding>();
+  /** Background color for sports */
+  @Input() sportBackgroundColor = 'transparent';
+  /** Text color for sports */
+  @Input() sportTextColor = 'black';
 
   /** Event emitter indicating funding being clicked */
   @Output() fundingClickedEventEmitter = new EventEmitter<string>();
 
   /** Projects to be displayed */
   fundings: Funding[] = [];
+
 
   //
   // Lifecycle hooks
