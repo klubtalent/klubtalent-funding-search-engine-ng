@@ -162,13 +162,13 @@ export class FundingService {
 
         this.loadTree(contentCommitSha).subscribe((tree: Tree) => {
           tree.tree.forEach(item => {
-              this.loadFileContent(`${environment.cmsContentPath}/${item.path}`).subscribe((itemContent: ItemContent) => {
-                const content: string = atob(itemContent.content);
-                const funding: Funding = this.parseContent(item.path, content);
+            this.loadFileContent(`${environment.cmsContentPath}/${item.path}`).subscribe((itemContent: ItemContent) => {
+              const content: string = FundingService.decode(itemContent.content);
+              const funding: Funding = this.parseContent(item.path, content);
 
-                this.fundingsSubject.next(funding);
-              });
+              this.fundingsSubject.next(funding);
             });
+          });
         });
       });
     });
@@ -267,5 +267,16 @@ export class FundingService {
     });
 
     return funding;
+  }
+
+  /**
+   * Decodes base64 into unicode string
+   * @see https://stackoverflow.com/a/30106551
+   * @param value base64 value
+   */
+  private static decode(value: string) {
+    return decodeURIComponent(Array.prototype.map.call(atob(value), function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''));
   }
 }
