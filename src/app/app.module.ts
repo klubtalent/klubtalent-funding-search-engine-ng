@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {LogoComponent} from "./components/logo/logo.component";
 import {HttpClientModule} from "@angular/common/http";
-import {FundingModule} from "./core/funding/funding.module";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import {FundingModule} from "./core/funding/funding.module";
 
     MatToolbarModule,
 
-    FundingModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

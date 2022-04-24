@@ -1,0 +1,7 @@
+<div class="list">
+    <app-funding-list-item *ngFor="let funding of fundings"
+                           class="list-item"
+                           [funding]="funding"
+                           (click)="onFundingClicked(funding.name)">
+    </app-funding-list-item>
+</div>

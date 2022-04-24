@@ -1,6 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ContentLoaderService} from "./services/content-loader.service";
-import {Funding} from "./model/funding";
+import {Component} from '@angular/core';
 
 /**
  * Displays app component
@@ -10,24 +8,8 @@ import {Funding} from "./model/funding";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   /** Default app theme */
   public themeClass = 'klubtalent-blue-theme';
-
-  /**
-   * Constructor
-   * @param contentLoaderService content loader service
-   */
-  constructor(private contentLoaderService: ContentLoaderService) {
-  }
-
-  /**
-   * Handles on-init lifecycle phase
-   */
-  ngOnInit() {
-    this.contentLoaderService.loadFundingItems().subscribe((funding: Funding) => {
-      //TODO Implement
-    });
-  }
 }
