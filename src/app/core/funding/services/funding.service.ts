@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
+import {environment} from "../../../../environments/environment";
 import {Observable, Subject} from "rxjs";
 import {Funding} from "../model/funding";
 
@@ -42,12 +42,14 @@ interface ItemContent {
 }
 
 /**
- * Loads content from CMS
+ * Loads funding from CMS
  */
 @Injectable({
   providedIn: 'root'
 })
-export class ContentLoaderService {
+export class FundingService {
+
+  fundingsSubject = new Subject<Funding>();
 
   /**
    * Constructor
@@ -57,6 +59,26 @@ export class ContentLoaderService {
   }
 
   /**
+   * Fetches funding items from CMS
+   */
+  fetchFundings() {
+    this.loadCmsOverview().subscribe((cmsOverview: CmsOverview) => {
+      cmsOverview.tree.forEach(item => {
+        this.loadFileContent(item.path).subscribe((itemContent: ItemContent) => {
+          const content: string = atob(itemContent.content);
+          const funding: Funding = this.parseContent(content);
+
+          this.fundingsSubject.next(funding);
+        });
+      });
+    });
+  }
+
+  //
+  // Helpers
+  //
+
+  /**
    * Loads list of files of git repository
    */
   private loadCmsOverview(): Observable<CmsOverview> {
@@ -64,7 +86,7 @@ export class ContentLoaderService {
   }
 
   /**
-   * Loads content of a given file
+   * Loads funding of a given file
    * @param path file name
    */
   private loadFileContent(path: string): Observable<ItemContent> {
@@ -88,8 +110,8 @@ export class ContentLoaderService {
   }
 
   /**
-   * Parses funding item from content string
-   * @param content content string
+   * Parses funding item from funding string
+   * @param content funding string
    */
   private parseContent(content: string): Funding {
     const funding = new Funding();
@@ -109,14 +131,14 @@ export class ContentLoaderService {
         if (key === 'sport') {
           funding.sport = value.replace(/[\[\]']+/g, '')
             .split(",")
-            .map(ContentLoaderService.replaceBrackets)
-            .filter(ContentLoaderService.isNotEmpty);
+            .map(FundingService.replaceBrackets)
+            .filter(FundingService.isNotEmpty);
         }
         if (key === 'type') {
           funding.type = value.replace(/[\[\]']+/g, '')
             .split(",")
-            .map(ContentLoaderService.replaceBrackets)
-            .filter(ContentLoaderService.isNotEmpty);
+            .map(FundingService.replaceBrackets)
+            .filter(FundingService.isNotEmpty);
         }
         if (key === 'volume') {
           funding.volume = +value;
@@ -128,25 +150,5 @@ export class ContentLoaderService {
     });
 
     return funding;
-  }
-
-  /**
-   * Loads funding items from CMS
-   */
-  loadFundingItems(): Observable<Funding> {
-    const items = new Subject<Funding>();
-
-    this.loadCmsOverview().subscribe((cmsOverview: CmsOverview) => {
-      cmsOverview.tree.forEach(item => {
-        this.loadFileContent(item.path).subscribe((itemContent: ItemContent) => {
-          const content: string = atob(itemContent.content);
-          const funding: Funding = this.parseContent(content);
-
-          items.next(funding);
-        });
-      });
-    });
-
-    return items;
   }
 }
