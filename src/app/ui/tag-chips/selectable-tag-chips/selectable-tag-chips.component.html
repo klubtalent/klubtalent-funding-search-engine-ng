@@ -1,0 +1,11 @@
+<mat-chip-list>
+  <mat-chip *ngFor="let tag of selectableTags"
+            [style.color]="color"
+            [style.border]="getBorder()"
+            [style.background]="getBackground(tag)"
+            [disabled]="getDisabled(tag)"
+            (click)="onTagClicked(tag)">
+    <mat-icon *ngIf="tag.icon != null" class="icon" [svgIcon]=tag.icon></mat-icon>
+    <span *ngIf="tag.name != null">{{ tag.name }}</span>
+  </mat-chip>
+</mat-chip-list>

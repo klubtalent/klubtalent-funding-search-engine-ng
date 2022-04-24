@@ -1,0 +1,7 @@
+<mat-chip [style.color]="color"
+          [style.background]="background"
+          (mouseenter)="onMouseEnter()"
+          (mouseleave)="onMouseLeave()">
+  <mat-icon *ngIf="icon != null" class="icon" [svgIcon]="icon"></mat-icon>
+  <span *ngIf="title != null" class="title" [@tagTextAnimation]="tagTextAnimationState">  {{ title }}</span>
+</mat-chip>

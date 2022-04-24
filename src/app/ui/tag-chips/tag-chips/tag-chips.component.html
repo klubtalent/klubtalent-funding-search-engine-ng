@@ -1,0 +1,25 @@
+<mat-chip-list>
+  <app-tag-chip *ngFor="let tag of tags, index as i"
+                [title]="getTitle(i)"
+                [icon]="getIcon(i)"
+                [readonly]="readonly"
+                [color]="color"
+                [background]="background"
+                [placeholder]="placeholder"
+                [tagTextAnimationEnabled]="collapsedText">
+  </app-tag-chip>
+  <div *ngIf="!readonly" class="searchbox">
+    <input class="search-input" matInput name="search" type="text" [placeholder]="placeholder"
+           [ngModel]="value"
+           [disabled]="readonly"
+           [matAutocomplete]="auto"
+           (ngModelChange)="onValueChanged($event)"
+           (keyup)="onKeyUp($event)"
+           (keydown)="onKeyDown()">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of optionsFiltered" [value]="option" (click)="onOptionSelected()">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+</mat-chip-list>
