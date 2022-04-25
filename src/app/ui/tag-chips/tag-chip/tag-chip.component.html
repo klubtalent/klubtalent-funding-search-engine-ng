@@ -4,6 +4,6 @@
           (mouseleave)="onMouseLeave()">
   <mat-icon *ngIf="icon != null" class="icon" [svgIcon]="icon"></mat-icon>
   <span *ngIf="title != null" class="title" [@tagTextAnimation]="tagTextAnimationState">
-    <span style="margin-left: 16px; margin-right: 8px;">{{ title }}</span>
+    <span style="margin-left: 8px; margin-right: 8px;">{{ title }}</span>
   </span>
 </mat-chip>

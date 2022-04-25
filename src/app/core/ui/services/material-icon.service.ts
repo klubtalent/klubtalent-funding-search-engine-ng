@@ -45,5 +45,8 @@ export class MaterialIconService {
     iconRegistry.addSvgIcon('tennis', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/tennis.svg'));
     iconRegistry.addSvgIcon('volleyball', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/volleyball.svg'));
     iconRegistry.addSvgIcon('yoga', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/yoga.svg'));
+
+    iconRegistry.addSvgIcon('currency-eur', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/currency-eur.svg'));
+    iconRegistry.addSvgIcon('map-marker-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/map-marker-outline.svg'));
   }
 }

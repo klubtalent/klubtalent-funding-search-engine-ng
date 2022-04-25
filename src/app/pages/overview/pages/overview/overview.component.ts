@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -44,6 +44,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public sportBackgroundColor = 'transparent';
   /** Text color for sport */
   public sportTextColor = 'black';
+  /** Background color for tag */
+  public typeBackgroundColor = 'transparent';
+  /** Text color for tag */
+  public typeTextColor = 'black';
 
   /** State of the search panel */
   searchPanelState = 'closed';
@@ -119,6 +123,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   private initializeMaterialColors() {
     this.sportBackgroundColor = this.materialColorService.color(PaletteType.KLUBTALENT_BLUE, HueType._500);
     this.sportTextColor = this.materialColorService.contrast(PaletteType.KLUBTALENT_BLUE, HueType._500);
+    this.typeBackgroundColor = this.materialColorService.color(PaletteType.KLUBTALENT_ORANGE, HueType._500);
+    this.typeTextColor = this.materialColorService.contrast(PaletteType.KLUBTALENT_ORANGE, HueType._500);
   }
 
   //

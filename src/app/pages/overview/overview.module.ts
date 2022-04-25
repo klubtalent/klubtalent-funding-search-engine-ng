@@ -8,6 +8,8 @@ import {OverviewRoutingModule} from "./overview-routing.module";
 import {MatDialogModule} from "@angular/material/dialog";
 import {TagChipsModule} from "../../ui/tag-chips/tag-chips.module";
 import {UiModule} from "../../core/ui/ui.module";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import {UiModule} from "../../core/ui/ui.module";
     CommonModule,
 
     MatCardModule,
+    MatChipsModule,
+    MatIconModule,
     MatDialogModule,
 
     UiModule,

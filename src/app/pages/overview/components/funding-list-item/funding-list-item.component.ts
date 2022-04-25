@@ -12,16 +12,22 @@ import {Funding} from "../../../../core/funding/model/funding";
 export class FundingListItemComponent implements OnChanges{
 
   /** Project to be displayed */
-  @Input() funding: Funding | undefined;
+  @Input() funding: Funding = new Funding();
   /** Background color for sport */
   @Input() sportBackgroundColor = 'transparent';
   /** Text color for sport */
   @Input() sportTextColor = 'black';
+  /** Background color for tag */
+  @Input() typeBackgroundColor = 'transparent';
+  /** Text color for tag */
+  @Input() typeTextColor = 'black';
 
   /** List of icons to display sport */
   sportIcons: string[] | undefined = [];
   /** Whether or not the text is collapsed */
   sportCollapsedText = true;
+  /** List of icons to display type */
+  typeIcons: string[] | undefined = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     this.initializeIcons();
@@ -33,6 +39,9 @@ export class FundingListItemComponent implements OnChanges{
   //
 
   static getIcon(value: string) {
+
+    console.log(`FOO value ${value}`);
+
     switch (value) {
       case "Badminton": return "badminton";
       case "Baseball": return "baseball";
@@ -73,5 +82,6 @@ export class FundingListItemComponent implements OnChanges{
 
   private initializeIcons() {
     this.sportIcons = this.funding?.sport.map(FundingListItemComponent.getIcon);
+    console.log(`FOO this.sportIcons ${JSON.stringify(this.sportIcons)}`);
   }
 }

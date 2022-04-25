@@ -1,13 +1,25 @@
 <div class="wrapper">
   <mat-card class="project">
-    <img *ngIf="funding?.image !== ''" mat-card-image [attr.src]="funding?.image" class="funding-image">
-    <mat-card-title>{{ funding?.name }}</mat-card-title>
+    <img *ngIf="funding.image !== ''" mat-card-image [attr.src]="funding.image" class="funding-image">
+    <mat-card-title>{{ funding.name }}</mat-card-title>
     <mat-card-content>
-      {{ funding?.text }}
+      {{ funding.text }}
     </mat-card-content>
     <mat-card-actions>
-      <app-tag-chips [tags]="funding?.sport" [icons]="sportIcons" [readonly]="true" [background]="sportBackgroundColor" [color]="sportTextColor"
-                     [collapsedText]="sportCollapsedText"></app-tag-chips>
+      <mat-chip-list>
+        <app-tag-chip *ngIf="funding.region !== ''"
+                      [title]="funding.region"
+                      [icon]="'map-marker-outline'">
+        </app-tag-chip>
+        <app-tag-chip *ngIf="funding.volume !== 0"
+                      [title]="funding.volume.toString()"
+                      [icon]="'currency-eur'">
+        </app-tag-chip>
+      </mat-chip-list>
+      <app-tag-chips [tags]="funding.sport" [icons]="sportIcons" [readonly]="true" [background]="sportBackgroundColor"
+                     [color]="sportTextColor" [collapsedText]="sportCollapsedText"></app-tag-chips>
+      <app-tag-chips [tags]="funding.type" [icons]="typeIcons" [readonly]="true" [background]="typeBackgroundColor"
+                     [color]="typeTextColor"></app-tag-chips>
     </mat-card-actions>
   </mat-card>
 </div>

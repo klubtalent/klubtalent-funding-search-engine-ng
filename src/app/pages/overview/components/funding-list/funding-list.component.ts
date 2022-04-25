@@ -17,6 +17,10 @@ export class FundingListComponent implements OnChanges {
   @Input() sportBackgroundColor = 'transparent';
   /** Text color for sports */
   @Input() sportTextColor = 'black';
+  /** Background color for tag */
+  @Input() typeBackgroundColor = 'transparent';
+  /** Text color for tag */
+  @Input() typeTextColor = 'black';
 
   /** Event emitter indicating funding being clicked */
   @Output() fundingClickedEventEmitter = new EventEmitter<string>();
