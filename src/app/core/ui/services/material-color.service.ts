@@ -12,19 +12,12 @@ import {Hue} from '../model/hue.model';
 })
 export class MaterialColorService {
 
+  /** App theme */
+  themeClass = 'klubtalent-blue-theme';
   /** Primary palette */
-  static PRIMARY_PALETTE = PaletteType.KLUBTALENT_BLUE;
-  /** Primary hue */
-  static PRIMARY_HUE = HueType._500;
+  primaryPalette = PaletteType.KLUBTALENT_BLUE;
   /** Accent palette */
-  static ACCENT_PALETTE = PaletteType.KLUBTALENT_ORANGE;
-  /** Accent hue */
-  static ACCENT_HUE = HueType._400;
-
-  /** Primary */
-  primary: any;
-  /** Accent */
-  accent: any;
+  accentPalette = PaletteType.KLUBTALENT_ORANGE;
 
   /** List of palettes */
   palettes: MaterialPalette[] = [];
@@ -34,7 +27,6 @@ export class MaterialColorService {
    */
   constructor() {
     this.initializeColors();
-    this.initializeThemeColors();
   }
 
   //
@@ -405,14 +397,92 @@ export class MaterialColorService {
     klubtalentOrange.hues.push(new Hue(HueType.A400, 'hsl(14, 76%, 58%)', '#FFFFFF'));
     klubtalentOrange.hues.push(new Hue(HueType.A700, 'hsl(14, 76%, 58%)', '#FFFFFF'));
     this.palettes.push(klubtalentOrange);
+
+    // Klubtalent purple
+    const klubtalentPurple = new MaterialPalette(PaletteType.KLUBTALENT_PURPLE);
+    klubtalentPurple.hues.push(new Hue(HueType._50, 'hsl(305, 25%, 100%)', '#000000'));
+    klubtalentPurple.hues.push(new Hue(HueType._100, 'hsl(305, 25%, 90%)', '#000000'));
+    klubtalentPurple.hues.push(new Hue(HueType._200, 'hsl(305, 25%, 80%)', '#000000'));
+    klubtalentPurple.hues.push(new Hue(HueType._300, 'hsl(305, 25%, 70%)', '#000000'));
+    klubtalentPurple.hues.push(new Hue(HueType._400, 'hsl(305, 25%, 60%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType._500, 'hsl(305, 25%, 50%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType._600, 'hsl(305, 25%, 40%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType._700, 'hsl(305, 25%, 30%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType._800, 'hsl(305, 25%, 20%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType._900, 'hsl(305, 25%, 10%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType.A100, 'hsl(305, 25%, 50%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType.A200, 'hsl(305, 25%, 50%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType.A400, 'hsl(305, 25%, 50%)', '#FFFFFF'));
+    klubtalentPurple.hues.push(new Hue(HueType.A700, 'hsl(305, 25%, 50%)', '#FFFFFF'));
+    this.palettes.push(klubtalentPurple);
+
+    // Klubtalent yellow
+    const klubtalentYellow = new MaterialPalette(PaletteType.KLUBTALENT_YELLOW);
+    klubtalentYellow.hues.push(new Hue(HueType._50, 'hsl(47, 79%, 94%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._100, 'hsl(47, 79%, 90%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._200, 'hsl(47, 79%, 80%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._300, 'hsl(47, 79%, 70%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._400, 'hsl(47, 79%, 60%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._500, 'hsl(47, 79%, 50%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType._600, 'hsl(47, 79%, 40%)', '#FFFFFF'));
+    klubtalentYellow.hues.push(new Hue(HueType._700, 'hsl(47, 79%, 30%)', '#FFFFFF'));
+    klubtalentYellow.hues.push(new Hue(HueType._800, 'hsl(47, 79%, 20%)', '#FFFFFF'));
+    klubtalentYellow.hues.push(new Hue(HueType._900, 'hsl(47, 79%, 10%)', '#FFFFFF'));
+    klubtalentYellow.hues.push(new Hue(HueType.A100, 'hsl(47, 79%, 50%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType.A200, 'hsl(47, 79%, 50%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType.A400, 'hsl(47, 79%, 50%)', '#000000'));
+    klubtalentYellow.hues.push(new Hue(HueType.A700, 'hsl(47, 79%, 50%)', '#000000'));
+    this.palettes.push(klubtalentYellow);
+
+    // Klubtalent green
+    const klubtalentGreen = new MaterialPalette(PaletteType.KLUBTALENT_GREEN);
+    klubtalentGreen.hues.push(new Hue(HueType._50, 'hsl(143, 38%, 96%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._100, 'hsl(143, 38%, 90%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._200, 'hsl(143, 38%, 80%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._300, 'hsl(143, 38%, 70%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._400, 'hsl(143, 38%, 60%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._500, 'hsl(143, 38%, 50%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType._600, 'hsl(143, 38%, 40%)', '#FFFFFF'));
+    klubtalentGreen.hues.push(new Hue(HueType._700, 'hsl(143, 38%, 30%)', '#FFFFFF'));
+    klubtalentGreen.hues.push(new Hue(HueType._800, 'hsl(143, 38%, 20%)', '#FFFFFF'));
+    klubtalentGreen.hues.push(new Hue(HueType._900, 'hsl(143, 38%, 10%)', '#FFFFFF'));
+    klubtalentGreen.hues.push(new Hue(HueType.A100, 'hsl(143, 38%, 50%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType.A200, 'hsl(143, 38%, 50%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType.A400, 'hsl(143, 38%, 50%)', '#000000'));
+    klubtalentGreen.hues.push(new Hue(HueType.A700, 'hsl(143, 38%, 50%)', '#000000'));
+    this.palettes.push(klubtalentGreen);
   }
 
   /**
-   * Initialize theme colors
+   * Initializes theme
    */
-  private initializeThemeColors() {
-    this.primary = this.color(MaterialColorService.PRIMARY_PALETTE, MaterialColorService.PRIMARY_HUE);
-    this.accent = this.color(MaterialColorService.ACCENT_PALETTE, MaterialColorService.ACCENT_HUE);
+  initializeTheme(theme: string) {
+    switch(theme) {
+      case "blue" : {
+        this.themeClass = 'klubtalent-blue-theme';
+        this.primaryPalette = PaletteType.KLUBTALENT_BLUE;
+        this.accentPalette = PaletteType.KLUBTALENT_ORANGE;
+        break;
+      }
+      case "purple" : {
+        this.themeClass = 'klubtalent-purple-theme';
+        this.primaryPalette = PaletteType.KLUBTALENT_PURPLE;
+        this.accentPalette = PaletteType.KLUBTALENT_ORANGE;
+        break;
+      }
+      case "yellow" : {
+        this.themeClass = 'klubtalent-yellow-theme';
+        this.primaryPalette = PaletteType.KLUBTALENT_YELLOW;
+        this.accentPalette = PaletteType.KLUBTALENT_ORANGE;
+        break;
+      }
+      case "green" : {
+        this.themeClass = 'klubtalent-green-theme';
+        this.primaryPalette = PaletteType.KLUBTALENT_GREEN;
+        this.accentPalette = PaletteType.KLUBTALENT_PURPLE;
+        break;
+      }
+    }
   }
 
   /**

@@ -1,0 +1,79 @@
+@use '~@angular/material' as mat;
+
+$color-yellow : #fcf7e5;
+$color-yellow : hsl(47, 79%, 94%);
+
+$klubtalent-yellow: (
+  50: hsl(47, 79%, 98%),
+  100: hsl(47, 79%, 90%),
+  200: hsl(47, 79%, 80%),
+  300: hsl(47, 79%, 70%),
+  400: hsl(47, 79%, 60%),
+  500: hsl(47, 79%, 50%),
+  600: hsl(47, 79%, 40%),
+  700: hsl(47, 79%, 30%),
+  800: hsl(47, 79%, 20%),
+  900: hsl(47, 79%, 10%),
+  A100: $color-yellow,
+  A200: $color-yellow,
+  A400: $color-yellow,
+  A700: $color-yellow,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+$color-orange : #e56843;
+$color-orange : hsl(14, 76%, 58%);
+
+$klubtalent-orange: (
+  50: hsl(14, 76%, 100%),
+  100: hsl(14, 76%, 90%),
+  200: hsl(14, 76%, 80%),
+  300: hsl(14, 76%, 70%),
+  400: hsl(14, 76%, 60%),
+  500: hsl(14, 76%, 50%),
+  600: hsl(14, 76%, 40%),
+  700: hsl(14, 76%, 30%),
+  800: hsl(14, 76%, 20%),
+  900: hsl(14, 76%, 10%),
+  A100: $color-orange,
+  A200: $color-orange,
+  A400: $color-orange,
+  A700: $color-orange,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$klubtalent-yellow-primary: mat.define-palette($klubtalent-yellow, 500, 400, 600);
+$klubtalent-yellow-accent: mat.define-palette($klubtalent-orange, 500, 400, 600);
+$klubtalent-yellow-warn: mat.define-palette(mat.$red-palette);
+
+$klubtalent-yellow-theme: mat.define-light-theme($klubtalent-yellow-primary, $klubtalent-yellow-accent, $klubtalent-yellow-warn);

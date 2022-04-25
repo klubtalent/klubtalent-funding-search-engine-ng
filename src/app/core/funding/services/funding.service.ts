@@ -174,6 +174,35 @@ export class FundingService {
     });
   }
 
+  /**
+   * Mocks funding items
+   */
+  mockFundings() {
+    const content1 = '+++\n' +
+      'image = "/uploads/screenshot-2022-04-24-at-10-48-52.png"\n' +
+      'name = "Lorem Impsum Funding"\n' +
+      'region = "Berlin"\n' +
+      'sport = ["Basketball"]\n' +
+      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
+      'type = ["Ausrüstung"]\n' +
+      'volume = 10000\n\n' +
+      '+++';
+    const funding1: Funding = this.parseContent("lorem-impsum.md", content1);
+    this.fundingsSubject.next(funding1);
+
+    const content2 = '+++\n' +
+      'image = "/uploads/screenshot-2022-04-24-at-17-06-12.png"\n' +
+      'name = "Impsum Lorem Funding"\n' +
+      'region = "Ingolstadt"\n' +
+      'sport = ["Fußball","Yoga"]\n' +
+      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
+      'type = ["Ausrüstung", "Beratung"]\n' +
+      'volume = 20000\n\n' +
+      '+++';
+    const funding2: Funding = this.parseContent("Impsum-lorem.md", content2);
+    this.fundingsSubject.next(funding2);
+  }
+
   //
   // Helpers
   //
@@ -245,13 +274,15 @@ export class FundingService {
           funding.sport = value.replace(/[\[\]']+/g, '')
             .split(",")
             .map(FundingService.replaceBrackets)
-            .filter(FundingService.isNotEmpty);
+            .filter(FundingService.isNotEmpty)
+            .map(value => value.trim());
         }
         if (key === 'type') {
           funding.type = value.replace(/[\[\]']+/g, '')
             .split(",")
             .map(FundingService.replaceBrackets)
-            .filter(FundingService.isNotEmpty);
+            .filter(FundingService.isNotEmpty)
+            .map(value => value.trim());
         }
         if (key === 'volume') {
           funding.volume = +value;
@@ -261,7 +292,6 @@ export class FundingService {
         }
         if (key === 'image') {
           funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;
-          console.log(`${environment.cmsUploadUrl}${value.replace(/"/g, "")}`);
         }
       }
     });

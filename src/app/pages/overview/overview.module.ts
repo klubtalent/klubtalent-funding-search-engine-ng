@@ -26,7 +26,6 @@ import {MatIconModule} from "@angular/material/icon";
     MatIconModule,
     MatDialogModule,
 
-    UiModule,
     TagChipsModule,
 
     OverviewRoutingModule

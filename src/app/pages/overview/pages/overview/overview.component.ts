@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Subject} from 'rxjs';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -9,8 +9,8 @@ import {Funding} from "../../../../core/funding/model/funding";
 import {FundingService} from "../../../../core/funding/services/funding.service";
 import {filter, takeUntil} from "rxjs/operators";
 import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
-import {PaletteType} from "../../../../core/ui/model/palette-type.enum";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
+import {environment} from "../../../../../environments/environment";
 
 /**
  * Displays overview page
@@ -35,7 +35,7 @@ import {HueType} from "../../../../core/ui/model/hue-type.enum";
     ])
   ]
 })
-export class OverviewComponent implements OnInit, OnDestroy {
+export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Map of fundings */
   public fundingsMap = new Map<string, Funding>();
@@ -86,6 +86,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Handles on-changes lifecycle phase
+   */
+  ngOnChanges(changes: SimpleChanges) {
+    this.initializeMaterialColors();
+  }
+
+  /**
    * Handles on-destroy lifecycle phase
    */
   ngOnDestroy() {
@@ -121,10 +128,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * Initializes material colors
    */
   private initializeMaterialColors() {
-    this.sportBackgroundColor = this.materialColorService.color(PaletteType.KLUBTALENT_BLUE, HueType._500);
-    this.sportTextColor = this.materialColorService.contrast(PaletteType.KLUBTALENT_BLUE, HueType._500);
-    this.typeBackgroundColor = this.materialColorService.color(PaletteType.KLUBTALENT_ORANGE, HueType._500);
-    this.typeTextColor = this.materialColorService.contrast(PaletteType.KLUBTALENT_ORANGE, HueType._500);
+    this.sportBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
+    this.sportTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
+    this.typeBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._100);
+    this.typeTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._100);
   }
 
   //
@@ -160,6 +167,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
    * @param forceReload force reload
    */
   private findEntities(forceReload = false) {
-    this.fundingService.fetchFundings();
+    if (environment.mock) {
+      this.fundingService.mockFundings();
+    } else {
+      this.fundingService.fetchFundings();
+    }
   }
 }

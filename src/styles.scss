@@ -2,14 +2,47 @@
 
 @include mat.core();
 @import 'theme-klubtalent-blue';
+@import 'theme-klubtalent-purple';
+@import 'theme-klubtalent-yellow';
+@import 'theme-klubtalent-green';
 
 .klubtalent-blue-theme {
   @include mat.all-component-themes($klubtalent-blue-theme);
 
-  background: #fafafa;
+  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
 
   .logo-letter {
     fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+  }
+}
+
+.klubtalent-purple-theme {
+  @include mat.all-component-themes($klubtalent-purple-theme);
+
+  background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
+
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+  }
+}
+
+.klubtalent-yellow-theme {
+  @include mat.all-component-themes($klubtalent-yellow-theme);
+
+  background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
+
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+  }
+}
+
+.klubtalent-green-theme {
+  @include mat.all-component-themes($klubtalent-green-theme);
+
+  background: mat.get-color-from-palette($klubtalent-green-primary, 50);
+
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
   }
 }
 

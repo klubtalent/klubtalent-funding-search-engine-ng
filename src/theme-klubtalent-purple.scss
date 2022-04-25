@@ -1,23 +1,23 @@
 @use '~@angular/material' as mat;
 
-$color-blue : #000033;
-$color-blue : hsl(240, 100%, 10%);
+$color-purple : #d8bed6;
+$color-purple : hsl(305, 25%, 80%);
 
-$klubtalent-blue: (
-  50: hsl(240, 100%, 98%),
-  100: hsl(240, 100%, 90%),
-  200: hsl(240, 100%, 80%),
-  300: hsl(240, 100%, 70%),
-  400: hsl(240, 100%, 60%),
-  500: hsl(240, 100%, 50%),
-  600: hsl(240, 100%, 40%),
-  700: hsl(240, 100%, 30%),
-  800: hsl(240, 100%, 20%),
-  900: hsl(240, 100%, 10%),
-  A100: $color-blue,
-  A200: $color-blue,
-  A400: $color-blue,
-  A700: $color-blue,
+$klubtalent-purple: (
+  50: hsl(305, 25%, 100%),
+  100: hsl(305, 25%, 90%),
+  200: hsl(305, 25%, 80%),
+  300: hsl(305, 25%, 70%),
+  400: hsl(305, 25%, 60%),
+  500: hsl(305, 25%, 50%),
+  600: hsl(305, 25%, 40%),
+  700: hsl(305, 25%, 30%),
+  800: hsl(305, 25%, 20%),
+  900: hsl(305, 25%, 10%),
+  A100: $color-purple,
+  A200: $color-purple,
+  A400: $color-purple,
+  A700: $color-purple,
   contrast: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
@@ -72,8 +72,8 @@ $klubtalent-orange: (
   )
 );
 
-$klubtalent-blue-primary: mat.define-palette($klubtalent-blue, 500, 400, 600);
-$klubtalent-blue-accent: mat.define-palette($klubtalent-orange, 500, 400, 600);
-$klubtalent-blue-warn: mat.define-palette(mat.$red-palette);
+$klubtalent-purple-primary: mat.define-palette($klubtalent-purple, 500, 400, 600);
+$klubtalent-purple-accent: mat.define-palette($klubtalent-orange, 500, 400, 600);
+$klubtalent-purple-warn: mat.define-palette(mat.$red-palette);
 
-$klubtalent-blue-theme: mat.define-light-theme($klubtalent-blue-primary, $klubtalent-blue-accent, $klubtalent-blue-warn);
+$klubtalent-purple-theme: mat.define-light-theme($klubtalent-purple-primary, $klubtalent-purple-accent, $klubtalent-purple-warn);

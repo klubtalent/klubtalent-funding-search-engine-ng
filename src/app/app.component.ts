@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MatIconRegistry} from "@angular/material/icon";
 import {MaterialIconService} from "./core/ui/services/material-icon.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {environment} from "../environments/environment";
+import {MaterialColorService} from "./core/ui/services/material-color.service";
+import {PaletteType} from "./core/ui/model/palette-type.enum";
 
 /**
  * Displays app component
@@ -13,17 +16,16 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class AppComponent implements OnInit {
 
-  /** Default app theme */
-  public themeClass = 'klubtalent-blue-theme';
-
   /**
    * Constructor
    * @param iconRegistry icon registry
    * @param materialIconService material icon service
+   * @param materialColorService material color service
    * @param sanitizer sanitizer
    */
   constructor(private iconRegistry: MatIconRegistry,
               private materialIconService: MaterialIconService,
+              public materialColorService: MaterialColorService,
               private sanitizer: DomSanitizer) {
   }
 
@@ -36,5 +38,6 @@ export class AppComponent implements OnInit {
    */
   ngOnInit() {
     this.materialIconService.initializeIcons(this.iconRegistry, this.sanitizer);
+    this.materialColorService.initializeTheme(environment.theme);
   }
 }

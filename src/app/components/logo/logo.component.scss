@@ -9,3 +9,21 @@
     fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
   }
 }
+
+.klubtalent-purple-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+  }
+}
+
+.klubtalent-yellow-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+  }
+}
+
+.klubtalent-green-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
+  }
+}

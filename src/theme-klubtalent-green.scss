@@ -1,0 +1,79 @@
+@use '~@angular/material' as mat;
+
+$color-green : #285a3b;
+$color-green : hsl(143, 38%, 25%);
+
+$klubtalent-green: (
+  50: hsl(143, 38%, 98%),
+  100: hsl(143, 38%, 90%),
+  200: hsl(143, 38%, 80%),
+  300: hsl(143, 38%, 70%),
+  400: hsl(143, 38%, 60%),
+  500: hsl(143, 38%, 50%),
+  600: hsl(143, 38%, 40%),
+  700: hsl(143, 38%, 30%),
+  800: hsl(143, 38%, 20%),
+  900: hsl(143, 38%, 10%),
+  A100: $color-green,
+  A200: $color-green,
+  A400: $color-green,
+  A700: $color-green,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$color-purple : #d8bed6;
+$color-purple : hsl(305, 25%, 80%);
+
+$klubtalent-purple: (
+  50: hsl(305, 25%, 100%),
+  100: hsl(305, 25%, 90%),
+  200: hsl(305, 25%, 80%),
+  300: hsl(305, 25%, 70%),
+  400: hsl(305, 25%, 60%),
+  500: hsl(305, 25%, 50%),
+  600: hsl(305, 25%, 40%),
+  700: hsl(305, 25%, 30%),
+  800: hsl(305, 25%, 20%),
+  900: hsl(305, 25%, 10%),
+  A100: $color-purple,
+  A200: $color-purple,
+  A400: $color-purple,
+  A700: $color-purple,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$klubtalent-green-primary: mat.define-palette($klubtalent-green, 500, 400, 600);
+$klubtalent-green-accent: mat.define-palette($klubtalent-purple, 500, 400, 600);
+$klubtalent-green-warn: mat.define-palette(mat.$red-palette);
+
+$klubtalent-green-theme: mat.define-light-theme($klubtalent-green-primary, $klubtalent-green-accent, $klubtalent-purple-warn);

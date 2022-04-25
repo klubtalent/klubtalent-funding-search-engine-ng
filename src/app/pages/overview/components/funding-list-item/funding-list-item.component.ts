@@ -39,9 +39,6 @@ export class FundingListItemComponent implements OnChanges{
   //
 
   static getIcon(value: string) {
-
-    console.log(`FOO value ${value}`);
-
     switch (value) {
       case "Badminton": return "badminton";
       case "Baseball": return "baseball";
@@ -82,6 +79,5 @@ export class FundingListItemComponent implements OnChanges{
 
   private initializeIcons() {
     this.sportIcons = this.funding?.sport.map(FundingListItemComponent.getIcon);
-    console.log(`FOO this.sportIcons ${JSON.stringify(this.sportIcons)}`);
   }
 }
