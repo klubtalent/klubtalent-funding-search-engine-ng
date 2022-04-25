@@ -3,6 +3,9 @@
 @include mat.core();
 @import '../theme-klubtalent-blue';
 
+@import '../styles';
+@import '../sizes';
+
 .klubtalent-blue-theme {
   @include mat.all-component-themes($klubtalent-blue-theme);
 
@@ -10,7 +13,27 @@
     fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
   }
 
+  .title {
+    color: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+    margin: 8px;
+  }
+
   .mat-toolbar {
     background: transparent;
+  }
+}
+
+.content {
+  @media #{$breakpoint-small} {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  @media #{$breakpoint-medium} {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  @media #{$breakpoint-large} {
+    margin-left: 40px;
+    margin-right: 40px;
   }
 }
