@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {Funding} from "../../../../core/funding/model/funding";
+import {Funding} from "../../../../core/funding/model/funding.model";
 
 /**
  * Displays a funding list
@@ -14,13 +14,13 @@ export class FundingListComponent implements OnChanges {
   /** Map of projects */
   @Input() fundingsMap = new Map<string, Funding>();
   /** Background color for sports */
-  @Input() sportBackgroundColor = 'transparent';
+  @Input() sportsBackgroundColor = 'transparent';
   /** Text color for sports */
-  @Input() sportTextColor = 'black';
+  @Input() sportsTextColor = 'black';
   /** Background color for tag */
-  @Input() typeBackgroundColor = 'transparent';
+  @Input() typesBackgroundColor = 'transparent';
   /** Text color for tag */
-  @Input() typeTextColor = 'black';
+  @Input() typesTextColor = 'black';
 
   /** Event emitter indicating funding being clicked */
   @Output() fundingClickedEventEmitter = new EventEmitter<string>();

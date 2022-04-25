@@ -1,8 +1,8 @@
-@use '~@angular/material' as mat;
-@import '../../../styles';
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+@import '../../../../../styles';
 
 @include mat.core();
-@import '../../../theme-klubtalent-blue';
+@import '../../../../../theme-klubtalent-blue';
 
 .klubtalent-blue-theme {
   .logo-letter {

@@ -9,10 +9,10 @@ export class Funding {
   name: string = '';
   /** Region */
   region: string = '';
-  /** Sport */
-  sport: string[] = [];
-  /** Type */
-  type: string[] = [];
+  /** Sports */
+  sports: string[] = [];
+  /** Types */
+  types: string[] = [];
   /** Volume */
   volume: number = 0;
   /** Text */

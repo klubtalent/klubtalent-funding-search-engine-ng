@@ -486,7 +486,7 @@ export class MaterialColorService {
   }
 
   /**
-   * Returns the personColor of a given palette and a hue
+   * Returns the color of a given palette and a hue
    * @param paletteType personColor palette
    * @param hueType personColor hue
    */
@@ -502,8 +502,8 @@ export class MaterialColorService {
 
   /**
    * Returns the contrast of a given palette and a hue
-   * @param paletteType personColor palette
-   * @param hueType personColor hue
+   * @param paletteType palette type
+   * @param hueType hue type
    */
   public contrast(paletteType: PaletteType, hueType: HueType): string {
     const hue = this.hue(paletteType, hueType);
@@ -516,8 +516,8 @@ export class MaterialColorService {
   }
 
   /**
-   * Returns the hue of a given palette and a hue typep
-   * @param paletteType personColor palette
+   * Returns the hue of a given palette and a hue
+   * @param paletteType palette type
    * @param hueType hue type
    */
   public hue(paletteType: PaletteType, hueType: HueType): Hue | undefined {

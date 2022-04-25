@@ -48,5 +48,50 @@ export class MaterialIconService {
 
     iconRegistry.addSvgIcon('currency-eur', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/currency-eur.svg'));
     iconRegistry.addSvgIcon('map-marker-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/map-marker-outline.svg'));
+    iconRegistry.addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/magnify.svg'));
+  }
+
+  getSportsIcon(value: string) {
+    switch (value) {
+      case "Badminton": return "badminton";
+      case "Baseball": return "baseball";
+      case "Basketball": return "basketball";
+      case "Beachvolleyball": return "volleyball";
+      case "Biathlon": return "biathlon";
+      case "Boxen": return "boxing-glove";
+      case "Curling": return "curling";
+      case "Eislaufen": return "skate";
+      case "Fechten": return "fencing";
+      case "Football": return "football";
+      case "Fußball": return "soccer";
+      case "Golf": return "golf";
+      case "Handball": return "handball";
+      case "Hockey": return "hockey";
+      case "Joggen": return "run";
+      case "Kampfsport": return "karate";
+      case "Karate": return "karate";
+      case "Kayakfahren": return "kayaking";
+      case "Kickboxen": return "boxing-glove";
+      case "Klettern": return "carabiner";
+      case "Kricket": return "cricket";
+      case "Laufen": return "run";
+      case "Radfahren": return "bike";
+      case "Rudern": return "rowing";
+      case "Rugby": return "rugby";
+      case "Squash": return "racquetball";
+      case "Schwimmen": return "swim";
+      case "Skateboarden": return "skateboarding";
+      case "Tennis": return "tennis";
+      case "Tischtennis": return "table-tennis";
+      case "Volleyball": return "volleyball";
+      case "Yoga": return "yoga";
+      default: return "";
+    }
+  }
+
+  getTypesIcon(value: string) {
+    switch (value) {
+      default: return "";
+    }
   }
 }

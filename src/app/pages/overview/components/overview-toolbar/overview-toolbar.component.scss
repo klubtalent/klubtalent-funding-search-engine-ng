@@ -1,0 +1,21 @@
+@use '~@angular/material' as mat;
+
+@import '../../../../../flex';
+@import '../../../../../styles';
+@import '../../../../../sizes';
+
+@include mat.core();
+
+.content {
+  width: 100%;
+
+  @media #{$breakpoint-small} {
+    margin: 10px;
+  }
+  @media #{$breakpoint-medium} {
+    margin: 20px;
+  }
+  @media #{$breakpoint-large} {
+    margin: 40px;
+  }
+}

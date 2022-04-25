@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable, Subject} from "rxjs";
-import {Funding} from "../model/funding";
+import {Funding} from "../model/funding.model";
 
 interface Branch {
   name: string,
@@ -182,7 +182,7 @@ export class FundingService {
       'image = "/uploads/screenshot-2022-04-24-at-10-48-52.png"\n' +
       'name = "Lorem Impsum Funding"\n' +
       'region = "Berlin"\n' +
-      'sport = ["Basketball"]\n' +
+      'sports = ["Basketball"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung"]\n' +
       'volume = 10000\n\n' +
@@ -194,7 +194,7 @@ export class FundingService {
       'image = "/uploads/screenshot-2022-04-24-at-17-06-12.png"\n' +
       'name = "Impsum Lorem Funding"\n' +
       'region = "Ingolstadt"\n' +
-      'sport = ["Fußball","Yoga"]\n' +
+      'sports = ["Fußball","Yoga"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung", "Beratung"]\n' +
       'volume = 20000\n\n' +
@@ -270,15 +270,15 @@ export class FundingService {
         if (key === 'region') {
           funding.region = value.replace(/['"]+/g, '');
         }
-        if (key === 'sport') {
-          funding.sport = value.replace(/[\[\]']+/g, '')
+        if (key === 'sports') {
+          funding.sports = value.replace(/[\[\]']+/g, '')
             .split(",")
             .map(FundingService.replaceBrackets)
             .filter(FundingService.isNotEmpty)
             .map(value => value.trim());
         }
         if (key === 'type') {
-          funding.type = value.replace(/[\[\]']+/g, '')
+          funding.types = value.replace(/[\[\]']+/g, '')
             .split(",")
             .map(FundingService.replaceBrackets)
             .filter(FundingService.isNotEmpty)

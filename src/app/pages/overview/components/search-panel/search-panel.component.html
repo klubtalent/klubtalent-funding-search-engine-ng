@@ -1,0 +1,25 @@
+<div class="content">
+    <h4>Sportart</h4>
+    <app-search-panel-topics [valuesMap]="sportsValuesMap"
+                             [border]="sportsBackgroundColor"
+                             [background]="sportsBackgroundColor"
+                             (tagsChangedEmitter)="onSportsSelected($event)">
+    </app-search-panel-topics>
+    <h4>Förderart</h4>
+    <app-search-panel-topics [valuesMap]="typesValuesMap"
+                             [border]="typesBackgroundColor"
+                             [background]="typesBackgroundColor"
+                             (tagsChangedEmitter)="onTypesSelected($event)">
+    </app-search-panel-topics>
+    <div class="flexcontainer">
+        <div class="flexbox">
+            <h4>Fördervolumen</h4>
+            <app-search-panel-volume [volumeValue]="volumeValue"
+                                     [volumeMin]="volumeMin"
+                                     [volumeMax]="volumeMax"
+                                     [volumeColor]="volumeColor"
+                                     (valueChangedEmitter)="onPriceSelected($event)">
+            </app-search-panel-volume>
+        </div>
+    </div>
+</div>

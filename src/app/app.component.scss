@@ -1,77 +1,24 @@
 @use '~@angular/material' as mat;
 
 @include mat.core();
-@import '../theme-klubtalent-blue';
 
 @import '../styles';
 @import '../sizes';
 
 .klubtalent-blue-theme {
-  @include mat.all-component-themes($klubtalent-blue-theme);
-
-  .logo-letter {
-    fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
-  }
-
-  .title {
-    color: mat.get-color-from-palette($klubtalent-blue-primary, 500);
-    margin: 8px;
-  }
-
-  .mat-toolbar {
-    background: mat.get-color-from-palette($klubtalent-blue-primary, 50);;
-  }
+  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);;
 }
 
 .klubtalent-purple-theme {
-  @include mat.all-component-themes($klubtalent-purple-theme);
-
-  .logo-letter {
-    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
-  }
-
-  .title {
-    color: mat.get-color-from-palette($klubtalent-purple-primary, 500);
-    margin: 8px;
-  }
-
-  .mat-toolbar {
-    background: mat.get-color-from-palette($klubtalent-purple-primary, 50);;
-  }
+  background: mat.get-color-from-palette($klubtalent-purple-primary, 50);;
 }
 
 .klubtalent-yellow-theme {
-  @include mat.all-component-themes($klubtalent-yellow-theme);
-
-  .logo-letter {
-    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
-  }
-
-  .title {
-    color: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
-    margin: 8px;
-  }
-
-  .mat-toolbar {
-    background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);;
-  }
+  background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);;
 }
 
 .klubtalent-green-theme {
-  @include mat.all-component-themes($klubtalent-green-theme);
-
-  .logo-letter {
-    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
-  }
-
-  .title {
-    color: mat.get-color-from-palette($klubtalent-green-primary, 500);
-    margin: 8px;
-  }
-
-  .mat-toolbar {
-    background: mat.get-color-from-palette($klubtalent-green-primary, 50);;
-  }
+  background: mat.get-color-from-palette($klubtalent-green-primary, 50);;
 }
 
 .content {

@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <div class="content flexcontainer">
+    <app-logo></app-logo>
+    <span class="title">| Fördergeld-Suchmachine</span>
+    <div class="flexbox"></div>
+    <button mat-button class="toolbar-menu-item" (click)="onFilterClicked()">
+      <mat-icon [svgIcon]="'search'"></mat-icon>
+    </button>
+    <button mat-button [@searchResetButtonAnimation]="searchPanelState" (click)="onResetFilterClicked()">
+      FILTER ZURÜCKSETZEN
+    </button>
+  </div>
+</mat-toolbar>

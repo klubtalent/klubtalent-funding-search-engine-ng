@@ -1,17 +1,34 @@
+@use '~@angular/material' as mat;
+
+@include mat.core();
+
 @import '../../../../../styles';
 @import '../../../../../sizes';
 
-.content {
+.klubtalent-blue-theme {
+  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);;
+}
+
+.klubtalent-purple-theme {
+  background: mat.get-color-from-palette($klubtalent-purple-primary, 50);;
+}
+
+.klubtalent-yellow-theme {
+  background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);;
+}
+
+.klubtalent-green-theme {
+  background: mat.get-color-from-palette($klubtalent-green-primary, 50);;
+}
+
+.content, .toolbar {
   @media #{$breakpoint-small} {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
   }
   @media #{$breakpoint-medium} {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 20px;
   }
   @media #{$breakpoint-large} {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 40px;
   }
 }

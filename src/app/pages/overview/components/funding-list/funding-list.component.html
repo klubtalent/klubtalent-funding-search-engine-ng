@@ -2,10 +2,10 @@
     <app-funding-list-item *ngFor="let funding of fundings"
                            class="list-item"
                            [funding]="funding"
-                           [sportBackgroundColor]="sportBackgroundColor"
-                           [sportTextColor]="sportTextColor"
-                           [typeBackgroundColor]="typeBackgroundColor"
-                           [typeTextColor]="typeTextColor"
+                           [sportsBackgroundColor]="sportsBackgroundColor"
+                           [sportsTextColor]="sportsTextColor"
+                           [typesBackgroundColor]="typesBackgroundColor"
+                           [typesTextColor]="typesTextColor"
                            (click)="onFundingClicked(funding.name)">
     </app-funding-list-item>
 </div>

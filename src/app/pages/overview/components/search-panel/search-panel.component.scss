@@ -1,0 +1,18 @@
+@import '../../../../../sizes';
+@import '../../../../../styles';
+@import '../../../../../flex';
+
+.content {
+  @media #{$breakpoint-small} {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  @media #{$breakpoint-medium} {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  @media #{$breakpoint-large} {
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+}

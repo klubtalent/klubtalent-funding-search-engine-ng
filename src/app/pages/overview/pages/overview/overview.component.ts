@@ -5,12 +5,16 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {Funding} from "../../../../core/funding/model/funding";
+import {Funding} from "../../../../core/funding/model/funding.model";
 import {FundingService} from "../../../../core/funding/services/funding.service";
 import {filter, takeUntil} from "rxjs/operators";
 import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
 import {environment} from "../../../../../environments/environment";
+import {FilterService} from "../../../../core/funding/services/filter.service";
+import {SelectableSport} from "../../../../core/funding/model/selectable-sport.model";
+import {SelectableType} from "../../../../core/funding/model/selectable-type.model";
+import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
 
 /**
  * Displays overview page
@@ -39,15 +43,31 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
 
   /** Map of fundings */
   public fundingsMap = new Map<string, Funding>();
+  /** Map of filtered fundings */
+  public fundingsMapFiltered = new Map<string, Funding>();
 
-  /** Background color for sport */
-  public sportBackgroundColor = 'transparent';
+  /** Map of sports */
+  selectableSportsMap = new Map<string, SelectableSport>();
+  /** Map of types */
+  selectableTypesMap = new Map<string, SelectableType>();
+
+  /** Filter values for sports */
+  sportsValuesMap: Map<string, [string, boolean, boolean]> = new Map<string, [string, boolean, boolean]>();
+  /** Filter values for types */
+  typesValuesMap: Map<string, [string, boolean, boolean]> = new Map<string, [string, boolean, boolean]>();
+  /** Filter value for volume */
+  volumeLimit = 0;
+
+  /** Background color for sports */
+  public sportsBackgroundColor = 'transparent';
   /** Text color for sport */
-  public sportTextColor = 'black';
+  public sportsTextColor = 'black';
   /** Background color for tag */
-  public typeBackgroundColor = 'transparent';
+  public typesBackgroundColor = 'transparent';
   /** Text color for tag */
-  public typeTextColor = 'black';
+  public typesTextColor = 'black';
+  /** Text color for volume */
+  public volumeColor = 'transparent';
 
   /** State of the search panel */
   searchPanelState = 'closed';
@@ -58,16 +78,20 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Constructor
    * @param dialog dialog
+   * @param filterService filter service
    * @param fundingService funding service
    * @param iconRegistry icon registry
    * @param materialColorService Material color service
+   * @param materialIconService Material icon service
    * @param router router
    * @param sanitizer sanitizer
    */
   constructor(private dialog: MatDialog,
+              private filterService: FilterService,
               private fundingService: FundingService,
               private iconRegistry: MatIconRegistry,
               private materialColorService: MaterialColorService,
+              private materialIconService: MaterialIconService,
               private router: Router,
               private sanitizer: DomSanitizer) {
   }
@@ -80,8 +104,9 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * Handles on-init lifecycle phase
    */
   ngOnInit() {
-    this.initializeMaterialColors();
     this.initializeSubscriptions();
+
+    this.initializeMaterialColors();
     this.findEntities();
   }
 
@@ -118,6 +143,7 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Initializes fundings
+   * @param funding funding
    */
   private initializeFundings(funding: Funding) {
     this.fundingsMap.set(funding.id, funding);
@@ -125,13 +151,91 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   /**
+   * Initializes sports
+   * @param funding funding
+   */
+  private initializeSports(funding: Funding) {
+    funding.sports.forEach(sport => {
+      this.selectableSportsMap.set(sport, new SelectableSport(sport));
+    });
+
+    this.selectableSportsMap = new Map(this.selectableSportsMap);
+  }
+
+  /**
+   * Initializes types
+   * @param funding funding
+   */
+  private initializeTypes(funding: Funding) {
+    funding.types.forEach(type => {
+      this.selectableTypesMap.set(type, new SelectableType(type));
+    });
+
+    this.selectableTypesMap = new Map(this.selectableTypesMap);
+  }
+
+  /**
    * Initializes material colors
    */
   private initializeMaterialColors() {
-    this.sportBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
-    this.sportTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
-    this.typeBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._100);
-    this.typeTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._100);
+    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._300);
+    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._300);
+    this.typesBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._100);
+    this.typesTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._100);
+
+    this.volumeColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
+  }
+
+  /**
+   * Initializes fundings based on filter
+   * @param fundingsMap fundings map
+   */
+  private initializeFundingsFiltered(fundingsMap: Map<string, Funding>) {
+    const fundingsMapFiltered = new Map<string, Funding>();
+
+    Array.from(fundingsMap.values()).filter(funding => {
+      return this.filterService.filterFunding(funding, this.selectableSportsMap, this.selectableTypesMap, this.volumeLimit);
+    }).forEach(funding => {
+      fundingsMapFiltered.set(funding.id, funding);
+    });
+
+    // Re-instantiate to trigger change detection
+    this.fundingsMapFiltered = new Map(fundingsMapFiltered);
+  }
+
+  /**
+   * Initializes filter
+   */
+  private initializeFilters() {
+    this.selectableSportsMap.forEach((value: SelectableSport, _: string) => {
+      value.disabled = false;
+      value.selected = false;
+    });
+    this.selectableTypesMap.forEach((value: SelectableType, _: string) => {
+      value.disabled = false;
+      value.selected = false;
+    });
+
+    // Transform selectable maps to value maps
+    this.selectableSportsMap.forEach((value: SelectableSport, _: string) => {
+      this.sportsValuesMap.set(value.name, [
+        this.materialIconService.getSportsIcon(value.name),
+        value.disabled,
+        value.selected
+      ]);
+    });
+    this.selectableTypesMap.forEach((value: SelectableType, _: string) => {
+      this.typesValuesMap.set(value.name, [
+        this.materialIconService.getTypesIcon(value.name),
+        value.disabled, value.selected
+      ]);
+    });
+
+    // Re-instantiate to trigger change detection
+    this.sportsValuesMap = new Map(this.sportsValuesMap);
+    this.typesValuesMap = new Map(this.typesValuesMap);
+
+    this.volumeLimit = this.getVolumeMin();
   }
 
   //
@@ -144,6 +248,11 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    */
   onFundingsUpdated(funding: Funding) {
     this.initializeFundings(funding);
+    this.initializeSports(funding);
+    this.initializeTypes(funding);
+
+    this.initializeFilters();
+    this.initializeFundingsFiltered(this.fundingsMap);
   }
 
   //
@@ -151,11 +260,68 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   //
 
   /**
+   * Handles click on menu item
+   * @param menuItem menu item
+   */
+  onMenuItemClicked(menuItem: string) {
+    switch (menuItem) {
+      case 'filter': {
+        this.searchPanelState = this.searchPanelState === 'opened' ? 'closed' : 'opened';
+        break;
+      }
+      case 'filter-reset': {
+        this.initializeFilters();
+        this.initializeFundingsFiltered(this.fundingsMap);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
+
+  /**
    * Handles funding being clicked
    * @param event funding name
    */
   onFundingClicked(event: string) {
     // TODO
+  }
+
+  /**
+   * Handles selection of sports
+   * @param event map of sports
+   */
+  onSportsSelected(event: Map<string, [string, boolean, boolean]>) {
+
+    this.selectableSportsMap.forEach((value: SelectableSport, _: string) => {
+      // @ts-ignore
+      value.selected = event.has(value.name) && event.get(value.name)[1];
+    });
+
+    this.initializeFundingsFiltered(this.fundingsMap);
+  }
+
+  /**
+   * Handles selection of types
+   * @param event map of types
+   */
+  onTypesSelected(event: Map<string, [string, boolean, boolean]>) {
+    this.selectableTypesMap.forEach((value: SelectableType, _: string) => {
+      // @ts-ignore
+      value.selected = event.has(value.name) && event.get(value.name)[1];
+    });
+
+    this.initializeFundingsFiltered(this.fundingsMap);
+  }
+
+  /**
+   * Handles selection of a volume limit
+   * @param event volume limit
+   */
+  onVolumeLimitSelected(event: number) {
+    this.volumeLimit = event;
+    this.initializeFundingsFiltered(this.fundingsMap);
   }
 
   //
@@ -172,5 +338,37 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
     } else {
       this.fundingService.fetchFundings();
     }
+  }
+
+  //
+  // Helpers
+  //
+
+  /**
+   * Gets maximum volume
+   */
+  getVolumeMax(): number {
+    let volumeMax = Number.MIN_VALUE;
+    this.fundingsMap.forEach((value: Funding, _: string) => {
+      if (value.volume > volumeMax) {
+        volumeMax = value.volume;
+      }
+    });
+
+    return volumeMax;
+  }
+
+  /**
+   * Gets minimum volume
+   */
+  getVolumeMin(): number {
+    let volumeMin = Number.MAX_VALUE;
+    this.fundingsMap.forEach((value: Funding, _: string) => {
+      if (value.volume < volumeMin) {
+        volumeMin = value.volume;
+      }
+    });
+
+    return volumeMin;
   }
 }

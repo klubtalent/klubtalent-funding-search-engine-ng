@@ -1,0 +1,13 @@
+<div class="content">
+    <span class="label-left">{{ volumeMin }} €</span>
+    <mat-slider step=1000
+                tickInterval="auto"
+                [value]="volumeValue"
+                [min]="volumeMin"
+                [max]="volumeMax"
+                [color]="volumeColor"
+                [thumbLabel]="true"
+                (valueChange)="onValueChanged($event)">
+    </mat-slider>
+    <span class="label-right"> {{ volumeMax }} €</span>
+</div>

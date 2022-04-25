@@ -1,13 +1,6 @@
 @import '../../../../../styles';
 @import '../../../../../sizes';
-
-.flexcontainer {
-  display: flex;
-}
-
-.flexbox {
-  flex-grow: 1;
-}
+@import '../../../../../flex';
 
 .list {
   display: flex;
