@@ -1,0 +1,35 @@
+<app-details-toolbar [title]="funding.name"
+                     (menuItemEventEmitter)="onMenuItemClicked($event)">
+</app-details-toolbar>
+
+<div *ngIf="funding != null" class="content">
+  <img *ngIf="funding.image !== ''" mat-card-image class="funding-banner"
+       [attr.src]="funding.image">
+  <div class="funding-basic-information flexcontainer">
+    <mat-chip-list>
+      <app-tag-chip *ngIf="funding.region !== ''"
+                    [title]="funding.region"
+                    [background]="'transparent'"
+                    [icon]="'map-marker-outline'">
+      </app-tag-chip>
+    </mat-chip-list>
+    <div class="flexbox"></div>
+    <mat-chip-list>
+      <app-tag-chip *ngIf="funding.volume !== 0"
+                    [title]="funding.volume.toString()"
+                    [background]="'transparent'"
+                    [icon]="'currency-eur'">
+      </app-tag-chip>
+    </mat-chip-list>
+    <div class="flexbox"></div>
+  </div>
+  <div class="funding-tags">
+    <app-tag-chips [tags]="funding.sports" [icons]="sportsIcons" [readonly]="true" [background]="sportsBackgroundColor"
+                   [color]="sportsTextColor"></app-tag-chips>
+    <app-tag-chips [tags]="funding.types" [icons]="typesIcons" [readonly]="true" [background]="typesBackgroundColor"
+                   [color]="typesTextColor"></app-tag-chips>
+  </div>
+  <div class="funding-detailed-information">
+    {{ funding.text }}
+  </div>
+</div>

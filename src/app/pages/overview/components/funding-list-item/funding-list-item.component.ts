@@ -31,8 +31,8 @@ export class FundingListItemComponent implements OnChanges {
   typesIcons: string[] | undefined = [];
 
   /**
-   * Constrcutor
-   * @param materialIconService Material icon service
+   * Constructor
+   * @param materialIconService material icon service
    */
   constructor(private materialIconService: MaterialIconService) {
   }
@@ -45,7 +45,7 @@ export class FundingListItemComponent implements OnChanges {
   }
 
   //
-  // Initial
+  // Initialization
   //
 
   /**

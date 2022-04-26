@@ -5,7 +5,7 @@ import {MaterialPalette} from '../model/palette.model';
 import {Hue} from '../model/hue.model';
 
 /**
- * Handles Material colors
+ * Handles material colors
  */
 @Injectable({
   providedIn: 'root'

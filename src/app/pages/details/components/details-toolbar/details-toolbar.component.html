@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <div class="content flexcontainer">
+    <button mat-button
+            class="toolbar-menu-item"
+            (click)="onBackClicked()">
+      <mat-icon class="menu-icon" [svgIcon]="'arrow-left'"></mat-icon>
+    </button>
+    <div class="flexbox"></div>
+    <div class="project-title">
+      <span class="title">{{ title }}</span>
+    </div>
+    <div class="flexbox"></div>
+  </div>
+</mat-toolbar>

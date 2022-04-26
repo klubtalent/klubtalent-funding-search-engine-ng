@@ -81,8 +81,8 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * @param filterService filter service
    * @param fundingService funding service
    * @param iconRegistry icon registry
-   * @param materialColorService Material color service
-   * @param materialIconService Material icon service
+   * @param materialColorService material color service
+   * @param materialIconService material icon service
    * @param router router
    * @param sanitizer sanitizer
    */
@@ -178,8 +178,8 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * Initializes material colors
    */
   private initializeMaterialColors() {
-    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._300);
-    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._300);
+    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
+    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
     this.typesBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._100);
     this.typesTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._100);
 
@@ -285,7 +285,7 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * @param event funding name
    */
   onFundingClicked(event: string) {
-    // TODO
+    this.router.navigate([`/details/${event}`]);
   }
 
   /**

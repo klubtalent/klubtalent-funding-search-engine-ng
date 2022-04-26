@@ -2,17 +2,19 @@
   <mat-card class="project">
     <img *ngIf="funding.image !== ''" mat-card-image [attr.src]="funding.image" class="funding-image">
     <mat-card-title>{{ funding.name }}</mat-card-title>
-    <mat-card-content>
+    <mat-card-subtitle>
       {{ funding.text }}
-    </mat-card-content>
+    </mat-card-subtitle>
     <mat-card-actions>
       <mat-chip-list>
         <app-tag-chip *ngIf="funding.region !== ''"
                       [title]="funding.region"
+                      [background]="'transparent'"
                       [icon]="'map-marker-outline'">
         </app-tag-chip>
         <app-tag-chip *ngIf="funding.volume !== 0"
                       [title]="funding.volume.toString()"
+                      [background]="'transparent'"
                       [icon]="'currency-eur'">
         </app-tag-chip>
       </mat-chip-list>

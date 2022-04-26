@@ -1,0 +1,52 @@
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+@import '../../../../../styles';
+@import '../../../../../sizes';
+@import '../../../../../flex';
+
+@include mat.core();
+@import '../../../../../theme-klubtalent-blue';
+
+::ng-deep .klubtalent-blue-theme {
+  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-purple-theme {
+  background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-yellow-theme {
+  background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-green-theme {
+  background: mat.get-color-from-palette($klubtalent-green-primary, 50);
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
+  }
+}
+
+.content {
+  width: 100%;
+  @media #{$breakpoint-small} {
+    margin: 10px;
+  }
+  @media #{$breakpoint-medium} {
+    margin: 20px;
+  }
+  @media #{$breakpoint-large} {
+    margin: 40px;
+  }
+}

@@ -3,7 +3,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 
 /**
- * Handles Material icons
+ * Handles material icons
  */
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,8 @@ export class MaterialIconService {
    * @param sanitizer sanitizer
    */
   public initializeIcons(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon('arrow-left', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/arrow-left.svg'));
+
     iconRegistry.addSvgIcon('badminton', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/badminton.svg'));
     iconRegistry.addSvgIcon('baseball', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/baseball.svg'));
     iconRegistry.addSvgIcon('basketball', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/basketball.svg'));

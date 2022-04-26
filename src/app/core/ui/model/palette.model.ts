@@ -2,7 +2,7 @@ import {Hue} from './hue.model';
 import {PaletteType} from './palette-type.enum';
 
 /**
- * Material palette of different hues
+ * material palette of different hues
  */
 export class MaterialPalette {
 

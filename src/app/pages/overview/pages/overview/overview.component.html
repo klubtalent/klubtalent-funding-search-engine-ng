@@ -1,6 +1,7 @@
 <app-overview-toolbar class="toolbar"
                       [searchPanelState]="searchPanelState"
                       (menuItemEventEmitter)="onMenuItemClicked($event)"></app-overview-toolbar>
+
 <div [@searchPanelAnimation]="searchPanelState">
   <app-search-panel [sportsValuesMap]="sportsValuesMap"
                     [sportsBackgroundColor]="sportsBackgroundColor"
