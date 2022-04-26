@@ -19,4 +19,10 @@ export class Funding {
   text: string = '';
   /** Image */
   image: string = '';
+  /** URL */
+  url: string = '';
+  /** Phone */
+  phone: string = '';
+  /** Mail */
+  mail: string = '';
 }

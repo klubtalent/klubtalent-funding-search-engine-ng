@@ -185,7 +185,10 @@ export class FundingService {
       'sports = ["Basketball"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung"]\n' +
-      'volume = 10000\n\n' +
+      'volume = 10000\n' +
+      'url = http://klubtalent.org\n' +
+      'phone = +4903555\n' +
+      'mail = kontakt@klubtalent.org\n\n' +
       '+++';
     const funding1: Funding = this.parseContent("lorem-impsum.md", content1);
     this.fundingsSubject.next(funding1);
@@ -197,7 +200,10 @@ export class FundingService {
       'sports = ["Fußball","Yoga"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung", "Beratung"]\n' +
-      'volume = 20000\n\n' +
+      'volume = 20000\n' +
+      'url = http://klubtalent.org\n' +
+      'phone = +4903555\n' +
+      'mail = kontakt@klubtalent.org\n\n' +
       '+++';
     const funding2: Funding = this.parseContent("Impsum-lorem.md", content2);
     this.fundingsSubject.next(funding2);
@@ -292,6 +298,15 @@ export class FundingService {
         }
         if (key === 'image') {
           funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;
+        }
+        if (key === 'url') {
+          funding.url = value;
+        }
+        if (key === 'phone') {
+          funding.phone = value;
+        }
+        if (key === 'mail') {
+          funding.mail = value;
         }
       }
     });

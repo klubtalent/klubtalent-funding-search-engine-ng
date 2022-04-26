@@ -1,11 +1,16 @@
 <mat-nav-list>
+  <a *ngIf="url != null && url !== ''" mat-list-item (click)="onUrlButtonClicked(url)">
+    <mat-icon mat-list-icon [svgIcon]="'web'"></mat-icon>
+    <div mat-line>{{ url }}</div>
+    <div mat-line>besuchen</div>
+  </a>
   <a *ngIf="phone != null && phone !== ''" mat-list-item (click)="onCallButtonClicked(phone)">
-    <mat-icon mat-list-icon>phone</mat-icon>
+    <mat-icon mat-list-icon [svgIcon]="'phone'"></mat-icon>
     <div mat-line>{{ phone }}</div>
     <div mat-line>anrufen</div>
   </a>
   <a *ngIf="mail != null && mail !== ''" mat-list-item (click)="onMailButtonClicked(mail)">
-    <mat-icon mat-list-icon>mail_ouline</mat-icon>
+    <mat-icon mat-list-icon [svgIcon]="'email-outline'"></mat-icon>
     <div mat-line>{{ mail }}</div>
     <div mat-line>schreiben</div>
   </a>

@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 /**
- * Displays bottom sheet with partner contact information
+ * Displays bottom sheet with funding contact information
  */
 @Component({
   selector: 'app-contact-bottom-sheet',
@@ -11,9 +11,11 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom
 })
 export class ContactBottomSheetComponent implements OnInit {
 
-  /** Project partner's phone number */
+  /** Funding URL */
+  url: string = "";
+  /** Funding phone number */
   phone: string = "";
-  /** Project partner's email address */
+  /** Funding email address */
   mail: string = "";
 
   /**
@@ -44,6 +46,7 @@ export class ContactBottomSheetComponent implements OnInit {
    * Initializes data
    */
   private initializeData() {
+    this.url = this.data.url;
     this.phone = this.data.phone;
     this.mail = this.data.mail;
   }
@@ -51,6 +54,14 @@ export class ContactBottomSheetComponent implements OnInit {
   /**
    * Actions
    */
+
+  /**
+   * Handles click on URL button
+   * @param url url
+   */
+  onUrlButtonClicked(url: string) {
+    window.location.href = url;
+  }
 
   /**
    * Handles click on call button
@@ -65,6 +76,6 @@ export class ContactBottomSheetComponent implements OnInit {
    * @param mail mail address
    */
   onMailButtonClicked(mail: string) {
-    window.location.href = `mailto:${mail}?subject=${escape('Anfrage BNE')}`;
+    window.location.href = `mailto:${mail}?subject=${escape('Anfrage Förderprogramm')}`;
   }
 }

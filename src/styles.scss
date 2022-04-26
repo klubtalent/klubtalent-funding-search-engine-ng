@@ -95,3 +95,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+::ng-deep .mat-bottom-sheet-container {
+  background: white;
+}

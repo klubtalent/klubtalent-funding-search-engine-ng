@@ -22,6 +22,9 @@
       </app-tag-chip>
     </mat-chip-list>
     <div class="flexbox"></div>
+    <div >
+      <button mat-button class="align-top" [style.color]=sportsTextColor (click)="onContactClicked()">FÖRDERGELDGEBER KONTAKTIEREN</button>
+    </div>
   </div>
   <div class="funding-tags">
     <app-tag-chips [tags]="funding.sports" [icons]="sportsIcons" [readonly]="true" [background]="sportsBackgroundColor"

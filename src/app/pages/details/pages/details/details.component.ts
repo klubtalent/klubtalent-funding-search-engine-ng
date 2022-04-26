@@ -10,6 +10,7 @@ import {FundingService} from "../../../../core/funding/services/funding.service"
 import {environment} from "../../../../../environments/environment";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
 import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
+import {ContactBottomSheetComponent} from "../../components/contact-bottom-sheet/contact-bottom-sheet.component";
 
 /**
  * Displays details page
@@ -173,6 +174,19 @@ export class DetailsComponent implements OnInit, OnDestroy {
         break;
       }
     }
+  }
+
+  /**
+   * Handles click on contact button
+   */
+  onContactClicked() {
+    this.bottomSheet.open(ContactBottomSheetComponent, {
+      data: {
+        url: this.funding.url,
+        phone: this.funding.phone,
+        mail: this.funding.mail,
+      }
+    });
   }
 
   /**
