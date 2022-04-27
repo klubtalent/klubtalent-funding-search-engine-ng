@@ -186,9 +186,9 @@ export class FundingService {
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung"]\n' +
       'volume = 10000\n' +
-      'url = http://klubtalent.org\n' +
-      'phone = +4903555\n' +
-      'mail = kontakt@klubtalent.org\n\n' +
+      'url = "https://klubtalent.org"\n' +
+      'phone = "+4903555"\n' +
+      'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
     const funding1: Funding = this.parseContent("lorem-impsum.md", content1);
     this.fundingsSubject.next(funding1);
@@ -201,11 +201,11 @@ export class FundingService {
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'type = ["Ausrüstung", "Beratung"]\n' +
       'volume = 20000\n' +
-      'url = http://klubtalent.org\n' +
-      'phone = +4903555\n' +
-      'mail = kontakt@klubtalent.org\n\n' +
+      'url = "https://klubtalent.org"\n' +
+      'phone = "+4903555"\n' +
+      'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
-    const funding2: Funding = this.parseContent("Impsum-lorem.md", content2);
+    const funding2: Funding = this.parseContent("impsum-lorem.md", content2);
     this.fundingsSubject.next(funding2);
   }
 
