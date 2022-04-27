@@ -300,13 +300,13 @@ export class FundingService {
           funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;
         }
         if (key === 'url') {
-          funding.url = value;
+          funding.url = value.replace(/['"]+/g, '');
         }
         if (key === 'phone') {
-          funding.phone = value;
+          funding.phone = value.replace(/['"]+/g, '');
         }
         if (key === 'mail') {
-          funding.mail = value;
+          funding.mail = value.replace(/['"]+/g, '');
         }
       }
     });
