@@ -29,6 +29,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: firebase deploy --only hosting:klubtalent-funding-search
+          args: deploy --project klubtalent-5da84 --only hosting:klubtalent-funding-search
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
