@@ -180,7 +180,7 @@ export class FundingService {
   mockFundings() {
     const content1 = '+++\n' +
       'image = "/uploads/screenshot-2022-04-24-at-10-48-52.png"\n' +
-      'name = "Lorem Impsum Funding"\n' +
+      'name = "Lorem Ipsum Funding"\n' +
       'region = "Berlin"\n' +
       'sports = ["Basketball"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
@@ -190,12 +190,12 @@ export class FundingService {
       'phone = "+4903555"\n' +
       'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
-    const funding1: Funding = this.parseContent("lorem-impsum.md", content1);
+    const funding1: Funding = this.parseContent("lorem-ipsum.md", content1);
     this.fundingsSubject.next(funding1);
 
     const content2 = '+++\n' +
       'image = "/uploads/screenshot-2022-04-24-at-17-06-12.png"\n' +
-      'name = "Impsum Lorem Funding"\n' +
+      'name = "Ipsum Lorem Funding"\n' +
       'region = "Ingolstadt"\n' +
       'sports = ["Fußball","Yoga"]\n' +
       'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
@@ -205,7 +205,7 @@ export class FundingService {
       'phone = "+4903555"\n' +
       'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
-    const funding2: Funding = this.parseContent("impsum-lorem.md", content2);
+    const funding2: Funding = this.parseContent("ipsum-lorem.md", content2);
     this.fundingsSubject.next(funding2);
   }
 
