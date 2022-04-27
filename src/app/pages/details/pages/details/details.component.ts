@@ -132,8 +132,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
       //         this.competenciesBackgroundColor = this.getColor(palette.lightMuted as Swatch).toString();
       //     });
       // }
-    } else {
-      this.router.navigate(['/']);
     }
   }
 
