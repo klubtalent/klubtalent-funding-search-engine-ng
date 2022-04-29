@@ -10,7 +10,8 @@
       <mat-icon [svgIcon]="'search'"></mat-icon>
     </button>
     <button mat-button [@searchResetButtonAnimation]="searchPanelState" (click)="onResetFilterClicked()">
-      FILTER ZURÜCKSETZEN
+      <span *ngIf="media > mediaType.SMALL">FILTER ZURÜCKSETZEN</span>
+      <mat-icon *ngIf="media < mediaType.MEDIUM" [svgIcon]="'filter-off-outline'"></mat-icon>
     </button>
   </div>
 </mat-toolbar>

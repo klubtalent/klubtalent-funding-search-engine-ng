@@ -51,6 +51,7 @@ export class MaterialIconService {
     iconRegistry.addSvgIcon('currency-eur', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/currency-eur.svg'));
     iconRegistry.addSvgIcon('map-marker-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/map-marker-outline.svg'));
     iconRegistry.addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/magnify.svg'));
+    iconRegistry.addSvgIcon('filter-off-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/filter-off-outline.svg'));
 
     iconRegistry.addSvgIcon('web', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/web.svg'));
     iconRegistry.addSvgIcon('phone', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/phone.svg'));
