@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Displays logo
@@ -9,4 +9,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
+
+  @Input() firstLetter = true;
+  @Input() otherLetters = true;
 }

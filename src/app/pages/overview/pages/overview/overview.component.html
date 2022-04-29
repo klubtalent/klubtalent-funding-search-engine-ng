@@ -1,4 +1,5 @@
 <app-overview-toolbar class="toolbar"
+                      [logoState]="logoState"
                       [searchPanelState]="searchPanelState"
                       (menuItemEventEmitter)="onMenuItemClicked($event)"></app-overview-toolbar>
 
@@ -20,11 +21,11 @@
 </div>
 
 <div class="content">
-    <app-funding-list [fundingsMap]="fundingsMapFiltered"
-                      [sportsBackgroundColor]="sportsBackgroundColor"
-                      [sportsTextColor]="sportsTextColor"
-                      [typesBackgroundColor]="typesBackgroundColor"
-                      [typesTextColor]="typesTextColor"
-                      (fundingClickedEventEmitter)="onFundingClicked($event)">
-    </app-funding-list>
+  <app-funding-list [fundingsMap]="fundingsMapFiltered"
+                    [sportsBackgroundColor]="sportsBackgroundColor"
+                    [sportsTextColor]="sportsTextColor"
+                    [typesBackgroundColor]="typesBackgroundColor"
+                    [typesTextColor]="typesTextColor"
+                    (fundingClickedEventEmitter)="onFundingClicked($event)">
+  </app-funding-list>
 </div>

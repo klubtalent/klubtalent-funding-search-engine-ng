@@ -32,7 +32,7 @@
   0 1px 1px 0 rgba(0, 0, 0, 0.14),
   0 1px 3px 0 rgba(0, 0, 0, 0.12);
 
-  width: calc(100% + 32px);
+  width: 100%;
 }
 
 .funding-basic-information, .funding-tags, .funding-detailed-information, .project-action {
@@ -51,5 +51,5 @@
 }
 
 .align-top {
-  margin-top: -10px;
+  margin-top: -4px;
 }

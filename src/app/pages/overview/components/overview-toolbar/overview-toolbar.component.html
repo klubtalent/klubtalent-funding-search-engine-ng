@@ -1,7 +1,10 @@
 <mat-toolbar>
   <div class="content flexcontainer">
-    <app-logo></app-logo>
-    <span class="title">| Fördergeld-Suchmachine</span>
+    <div style="position: relative">
+      <app-logo [firstLetter]=true [otherLetters]=false style="position: absolute; top: 0; left: 0;"></app-logo>
+      <app-logo [firstLetter]=false [otherLetters]=true [@logoAnimation]="logoState"></app-logo>
+    </div>
+    <span class="title" *ngIf="media > mediaType.SMALL" [@logoAnimation]="logoState">| Fördergeld-Suchmachine</span>
     <div class="flexbox"></div>
     <button mat-button class="toolbar-menu-item" (click)="onFilterClicked()">
       <mat-icon [svgIcon]="'search'"></mat-icon>

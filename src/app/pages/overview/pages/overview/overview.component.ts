@@ -25,12 +25,12 @@ import {MaterialIconService} from "../../../../core/ui/services/material-icon.se
   styleUrls: ['./overview.component.scss'],
   animations: [
     trigger('searchPanelAnimation', [
-      state('open', style({
+      state('panel-open', style({
         opacity: '1',
         overflow: 'hidden',
         height: '*'
       })),
-      state('closed', style({
+      state('panel-closed', style({
         opacity: '0',
         overflow: 'hidden',
         height: '0px'
@@ -69,8 +69,10 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   /** Text color for volume */
   public volumeColor = 'transparent';
 
+  /** State of the logo */
+  logoState = 'logo-open';
   /** State of the search panel */
-  searchPanelState = 'closed';
+  searchPanelState = 'panel-closed';
 
   /** Helper subject used to finish other subscriptions */
   public unsubscribeSubject = new Subject();
@@ -266,7 +268,8 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   onMenuItemClicked(menuItem: string) {
     switch (menuItem) {
       case 'filter': {
-        this.searchPanelState = this.searchPanelState === 'opened' ? 'closed' : 'opened';
+        this.logoState = this.logoState === 'logo-open' ? 'logo-closed' : 'logo-open';
+        this.searchPanelState = this.searchPanelState === 'panel-open' ? 'panel-closed' : 'panel-open';
         break;
       }
       case 'filter-reset': {
