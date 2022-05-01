@@ -4,128 +4,207 @@ import {environment} from "../../../../environments/environment";
 import {Observable, Subject} from "rxjs";
 import {Funding} from "../model/funding.model";
 
+/**
+ * Represents a git branch
+ */
 interface Branch {
+  /** Name */
   name: string,
+  /** Commit */
   commit: {
+    /** SHA */
     sha: string,
+    /** Node ID */
     node_id: string,
+    /** Commit */
     commit: {
+      /** Author */
       author: {
+        /** Name */
         "name": string,
+        /** E-Mail */
         "email": string,
+        /** Date */
         "date": string,
       },
+      /** Committer */
       "committer": {
+        /** Name */
         "name": string,
+        /** E-Mail */
         "email": string,
-        "date": string
+        /** Date */
+        "date": string,
       },
+      /** Message */
       "message": string,
+      /** Tree */
       "tree": {
+        /** SHA */
         "sha": string,
+        /** URL */
         "url": string,
       },
+      /** URL */
       "url": string,
+      /** Comment count */
       "comment_count": number,
+      /** Verification */
       "verification": {
+        /** Verified */
         "verified": boolean,
+        /** Reason */
         "reason": string,
+        /** Signature */
         "signature": {},
+        /** Payload */
         "payload": {}
       }
     },
+    /** URL */
     url: string,
+    /** HTML URL */
     html_url: string,
+    /** Comments URL */
     comments_url: string,
+    /** Author */
     author: {
+      /** Login */
       login: string,
+      /** ID */
       id: number,
+      /** Node ID */
       node_id: string,
+      /** Avatar URL */
       avatar_url: string,
+      /** Gravatar ID */
       gravatar_id: string,
+      /** URL */
       url: string,
+      /** HTML URL */
       html_url: string,
+      /** Followers URL */
       followers_url: string,
+      /** Following URL */
       following_url: string,
+      /** Gists URL */
       gists_url: string,
+      /** Starred URL */
       starred_url: string,
+      /** Subscriptions URL */
       subscriptions_url: string,
+      /** Organizations URL */
       organizations_url: string,
+      /** Repos URL */
       repos_url: string,
+      /** Events URL */
       events_url: string,
+      /** Received events URL */
       received_events_url: string,
+      /** Type */
       type: string,
+      /** Site admin */
       site_admin: boolean
     },
+    /** Committer */
     committer: string,
+    /** Parents */
     parents: {
+      /** SHA */
       sha: string,
+      /** URL */
       url: string,
+      /** HTML URL */
       html_url: string
     }[]
   },
+  /** Links */
   _links: {
+    /** Self */
     self: string,
+    /** Git */
     git: string,
+    /** HTML */
     html: string,
   }
+  /** Protected */
   protected: boolean,
+  /** Protection */
   protection: {
+    /** Enabled */
     enabled: boolean
+    /** Required status checks */
     required_status_checks: {
+      /** Enforcement level */
       enforcement_level: string,
+      /** Contexts */
       contexts: [],
+      /** Checks */
       checks: []
     }
   },
+  /** Protection URL */
   protectionUrl: string
 }
 
+/**
+ * Represents git tree
+ */
 interface Tree {
+  /** SHA */
   sha: string,
+  /** URL */
   url: string,
+  /** Tree */
   tree: {
+    /** Path */
     path: string,
+    /** Mode */
     mode: string,
+    /** Type */
     type: string,
+    /** SHA */
     sha: string,
+    /** URL */
     url: string,
   }[],
+  /** Truncated */
   truncated: boolean
 }
 
+/**
+ * Represents git item content
+ */
 interface ItemContent {
+  /** Name */
   name: string,
+  /** Path */
   path: string,
+  /** SHA */
   sha: string,
+  /** Size */
   size: number,
+  /** URL */
   url: string,
+  /** HTML URL */
   html_url: string,
+  /** Git URL */
   git_url: string,
+  /** Download URL */
   download_url: string,
+  /** Type */
   type: string,
-  _links: {
-    self: string,
-    git: string,
-    html: string,
-  }
-}
-
-interface ItemContent {
-  name: string,
-  path: string,
-  sha: string,
-  size: number,
-  url: string,
-  html_url: string,
-  git_url: string,
-  download_url: string,
-  type: string,
+  /** Content */
   content: string,
+  /** Encoding */
   encoding: string,
+  /** Links */
   _links: {
+    /** Self */
     self: string,
+    /** Git */
     git: string,
+    /** HTML */
     html: string,
   }
 }
@@ -139,6 +218,7 @@ interface ItemContent {
 })
 export class FundingService {
 
+  /** Fundings subject */
   fundingsSubject = new Subject<Funding>();
 
   /**

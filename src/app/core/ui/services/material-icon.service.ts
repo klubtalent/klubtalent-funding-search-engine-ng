@@ -58,6 +58,10 @@ export class MaterialIconService {
     iconRegistry.addSvgIcon('email-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/email-outline.svg'));
   }
 
+  /**
+   * Retrieves icon
+   * @param value value
+   */
   getSportsIcon(value: string) {
     switch (value) {
       case "Badminton": return "badminton";
@@ -96,6 +100,10 @@ export class MaterialIconService {
     }
   }
 
+  /**
+   * Retrieves icon
+   * @param value value
+   */
   getTypesIcon(value: string) {
     switch (value) {
       default: return "";
