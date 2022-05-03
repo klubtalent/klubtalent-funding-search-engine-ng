@@ -464,6 +464,12 @@ export class MaterialColorService {
         this.accentPalette = PaletteType.KLUBTALENT_ORANGE;
         break;
       }
+      case "dark-blue" : {
+        this.themeClass = 'klubtalent-dark-blue-theme';
+        this.primaryPalette = PaletteType.KLUBTALENT_BLUE;
+        this.accentPalette = PaletteType.KLUBTALENT_ORANGE;
+        break;
+      }
       case "purple" : {
         this.themeClass = 'klubtalent-purple-theme';
         this.primaryPalette = PaletteType.KLUBTALENT_PURPLE;

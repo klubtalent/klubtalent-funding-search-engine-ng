@@ -2,6 +2,7 @@
 
 @include mat.core();
 @import 'theme-klubtalent-blue';
+@import 'theme-klubtalent-dark-blue';
 @import 'theme-klubtalent-purple';
 @import 'theme-klubtalent-yellow';
 @import 'theme-klubtalent-green';
@@ -20,6 +21,23 @@
 
   .mat-toolbar {
     background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
+  }
+}
+
+.klubtalent-dark-blue-theme {
+  @include mat.all-component-themes($klubtalent-dark-blue-theme);
+
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-dark-blue-primary, 900);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-dark-blue-primary, 900);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-dark-blue-primary, 50);
   }
 }
 

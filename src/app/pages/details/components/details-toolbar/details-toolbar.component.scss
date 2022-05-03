@@ -14,6 +14,14 @@
   }
 }
 
+::ng-deep .klubtalent-dark-blue-theme {
+  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 900);
+  }
+}
+
 ::ng-deep .klubtalent-purple-theme {
   background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
 

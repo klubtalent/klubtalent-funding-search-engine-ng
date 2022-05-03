@@ -10,6 +10,12 @@
   }
 }
 
+.klubtalent-dark-blue-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 900);
+  }
+}
+
 .klubtalent-purple-theme {
   .logo-letter {
     fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
