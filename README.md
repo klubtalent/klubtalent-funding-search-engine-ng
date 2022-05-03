@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/klubtalent/klubtalent-funding-search-engine-ng">
-    <img src="./logo.png" alt="Logo" width="80" height="80">
+    <img src="./src/assets/icons-maskable-blue/maskable_icon_x96.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center">Klubtalent Funding Search Engine</h1>
