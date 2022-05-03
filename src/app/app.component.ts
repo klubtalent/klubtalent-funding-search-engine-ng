@@ -4,7 +4,6 @@ import {MaterialIconService} from "./core/ui/services/material-icon.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {environment} from "../environments/environment";
 import {MaterialColorService} from "./core/ui/services/material-color.service";
-import {PaletteType} from "./core/ui/model/palette-type.enum";
 
 /**
  * Displays app component

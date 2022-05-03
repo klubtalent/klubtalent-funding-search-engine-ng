@@ -15,7 +15,6 @@ import {LogoComponent} from "./components/logo/logo.component";
 import {SearchPanelComponent} from "./components/search-panel/search-panel.component";
 import {SearchPanelTopicsComponent} from "./components/search-panel-topics/search-panel-topics.component";
 import {SearchPanelVolumeComponent} from "./components/search-panel-volume/search-panel-volume.component";
-import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatButtonModule} from "@angular/material/button";
 

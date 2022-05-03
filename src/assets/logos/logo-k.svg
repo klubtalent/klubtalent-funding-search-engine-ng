@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32.5"
+   height="32.5"
+   viewbox="0 0 209.37 32.453"
+   version="1.1"
+   id="svg85"
+   sodipodi:docname="logo-k.svg"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs89" />
+  <sodipodi:namedview
+     id="namedview87"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     height="32.453px"
+     width="32.5px"
+     inkscape:zoom="2.3145497"
+     inkscape:cx="42.556875"
+     inkscape:cy="46.229295"
+     inkscape:window-width="1440"
+     inkscape:window-height="766"
+     inkscape:window-x="0"
+     inkscape:window-y="565"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Gruppe_233" />
+  <g
+     id="Gruppe_233"
+     data-name="Gruppe 233"
+     transform="translate(-419.277,-581.369)">
+    <path
+       class="logo-letter"
+       id="logo_path_1"
+       data-name="Pfad 1"
+       d="m 447.30969,591.17805 -9.284,9.968 9.876,12.516 h -7.965 l -6.873,-8.966 -1.138,1.138 v 7.828 h -6.6 v -31.861 h 6.6 v 17.387 l 7.465,-8.01 z"
+       fill="#000033"
+       style="fill:#ffffff" />
+  </g>
+</svg>
