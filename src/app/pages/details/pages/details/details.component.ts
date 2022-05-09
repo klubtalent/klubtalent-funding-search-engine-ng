@@ -148,8 +148,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
    * Initializes material colors
    */
   private initializeMaterialColors() {
-    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._300);
-    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._300);
+    this.sportsBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._200);
+    this.sportsTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._200);
     this.typesBackgroundColor = this.materialColorService.color(this.materialColorService.primaryPalette, HueType._100);
     this.typesTextColor = this.materialColorService.contrast(this.materialColorService.primaryPalette, HueType._100);
 
