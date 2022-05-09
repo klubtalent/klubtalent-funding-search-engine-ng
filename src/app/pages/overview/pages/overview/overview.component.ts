@@ -6,7 +6,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {Funding} from "../../../../core/funding/model/funding.model";
-import {FundingService} from "../../../../core/funding/services/funding.service";
 import {filter, takeUntil} from "rxjs/operators";
 import {MaterialColorService} from "../../../../core/ui/services/material-color.service";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
@@ -15,6 +14,8 @@ import {FilterService} from "../../../../core/funding/services/filter.service";
 import {SelectableSport} from "../../../../core/funding/model/selectable-sport.model";
 import {SelectableType} from "../../../../core/funding/model/selectable-type.model";
 import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
+import {FundingFirestoreService} from "../../../../core/funding/services/funding-firestore.service";
+import {FundingMockService} from "../../../../core/funding/services/funding-mock.service";
 
 /**
  * Displays overview page
@@ -81,7 +82,8 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * Constructor
    * @param dialog dialog
    * @param filterService filter service
-   * @param fundingService funding service
+   * @param fundingFirestoreService funding Firestore service
+   * @param fundingMockService funding mock service
    * @param iconRegistry icon registry
    * @param materialColorService material color service
    * @param materialIconService material icon service
@@ -90,7 +92,8 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    */
   constructor(private dialog: MatDialog,
               private filterService: FilterService,
-              private fundingService: FundingService,
+              private fundingFirestoreService: FundingFirestoreService,
+              private fundingMockService: FundingMockService,
               private iconRegistry: MatIconRegistry,
               private materialColorService: MaterialColorService,
               private materialIconService: MaterialIconService,
@@ -135,7 +138,14 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    * Initializes subscriptions
    */
   private initializeSubscriptions() {
-    this.fundingService.fundingsSubject.pipe(
+    this.fundingFirestoreService.fundingsSubject.pipe(
+      takeUntil(this.unsubscribeSubject),
+      filter(value => value != null)
+    ).subscribe(value => {
+      this.onFundingsUpdated(value as Funding);
+    });
+
+    this.fundingMockService.fundingsSubject.pipe(
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
@@ -337,9 +347,9 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
    */
   private findEntities(forceReload = false) {
     if (environment.mock) {
-      this.fundingService.mockFundings();
+      this.fundingMockService.fetchFundings();
     } else {
-      this.fundingService.fetchFundings();
+      this.fundingFirestoreService.fetchFundings();
     }
   }
 

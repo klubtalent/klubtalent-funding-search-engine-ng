@@ -211,12 +211,12 @@ interface ItemContent {
 
 
 /**
- * Loads funding from CMS
+ * Loads fundings via Github API
  */
 @Injectable({
   providedIn: 'root'
 })
-export class FundingService {
+export class FundingGithubService {
 
   /** Fundings subject */
   fundingsSubject = new Subject<Funding>();
@@ -229,7 +229,7 @@ export class FundingService {
   }
 
   /**
-   * Fetches funding items from CMS
+   * Fetches funding items via Github API
    */
   fetchFundings() {
     this.loadBranch(environment.cmsContentBranch).subscribe((branch: Branch) => {
@@ -243,7 +243,7 @@ export class FundingService {
         this.loadTree(contentCommitSha).subscribe((tree: Tree) => {
           tree.tree.forEach(item => {
             this.loadFileContent(`${environment.cmsContentPath}/${item.path}`).subscribe((itemContent: ItemContent) => {
-              const content: string = FundingService.decode(itemContent.content);
+              const content: string = FundingGithubService.decode(itemContent.content);
               const funding: Funding = this.parseContent(item.path, content);
 
               this.fundingsSubject.next(funding);
@@ -252,41 +252,6 @@ export class FundingService {
         });
       });
     });
-  }
-
-  /**
-   * Mocks funding items
-   */
-  mockFundings() {
-    const content1 = '+++\n' +
-      'image = "/uploads/screenshot-2022-04-24-at-10-48-52.png"\n' +
-      'name = "Lorem Ipsum Funding"\n' +
-      'region = "Berlin"\n' +
-      'sports = ["Basketball"]\n' +
-      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
-      'type = ["Ausrüstung"]\n' +
-      'volume = 10000\n' +
-      'url = "https://klubtalent.org"\n' +
-      'phone = "+4903555"\n' +
-      'mail = "kontakt@klubtalent.org"\n\n' +
-      '+++';
-    const funding1: Funding = this.parseContent("lorem-ipsum.md", content1);
-    this.fundingsSubject.next(funding1);
-
-    const content2 = '+++\n' +
-      'image = "/uploads/screenshot-2022-04-24-at-17-06-12.png"\n' +
-      'name = "Ipsum Lorem Funding"\n' +
-      'region = "Ingolstadt"\n' +
-      'sports = ["Fußball","Yoga"]\n' +
-      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
-      'type = ["Ausrüstung", "Beratung"]\n' +
-      'volume = 20000\n' +
-      'url = "https://klubtalent.org"\n' +
-      'phone = "+4903555"\n' +
-      'mail = "kontakt@klubtalent.org"\n\n' +
-      '+++';
-    const funding2: Funding = this.parseContent("ipsum-lorem.md", content2);
-    this.fundingsSubject.next(funding2);
   }
 
   //
@@ -359,15 +324,15 @@ export class FundingService {
         if (key === 'sports') {
           funding.sports = value.replace(/[\[\]']+/g, '')
             .split(",")
-            .map(FundingService.replaceBrackets)
-            .filter(FundingService.isNotEmpty)
+            .map(FundingGithubService.replaceBrackets)
+            .filter(FundingGithubService.isNotEmpty)
             .map(value => value.trim());
         }
-        if (key === 'type') {
+        if (key === 'types') {
           funding.types = value.replace(/[\[\]']+/g, '')
             .split(",")
-            .map(FundingService.replaceBrackets)
-            .filter(FundingService.isNotEmpty)
+            .map(FundingGithubService.replaceBrackets)
+            .filter(FundingGithubService.isNotEmpty)
             .map(value => value.trim());
         }
         if (key === 'volume') {

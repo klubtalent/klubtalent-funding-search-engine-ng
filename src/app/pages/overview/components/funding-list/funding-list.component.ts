@@ -60,7 +60,6 @@ export class FundingListComponent implements OnChanges {
    * @param event funding name
    */
   onFundingClicked(event: string) {
-    console.log(`FOO event ${event}`);
     this.fundingClickedEventEmitter.emit(event);
   }
 }

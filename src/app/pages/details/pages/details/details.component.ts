@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
 import {MaterialColorService} from '../../../../core/ui/services/material-color.service';
-import {VibrantPalette} from '../../../../core/ui/model/vibrant-palette';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {Funding} from "../../../../core/funding/model/funding.model";
-import {FundingService} from "../../../../core/funding/services/funding.service";
 import {environment} from "../../../../../environments/environment";
 import {HueType} from "../../../../core/ui/model/hue-type.enum";
 import {MaterialIconService} from "../../../../core/ui/services/material-icon.service";
 import {ContactBottomSheetComponent} from "../../components/contact-bottom-sheet/contact-bottom-sheet.component";
+import {FundingFirestoreService} from "../../../../core/funding/services/funding-firestore.service";
+import {FundingMockService} from "../../../../core/funding/services/funding-mock.service";
 
 /**
  * Displays details page
@@ -55,14 +55,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
    * @param bottomSheet bottom sheet
    * @param materialColorService material color service
    * @param materialIconService material icon service
-   * @param fundingService funding service
+   * @param fundingFirestoreService funding Firestore service
+   * @param fundingMockService funding mock service
    * @param route route
    * @param router router
    */
   constructor(private bottomSheet: MatBottomSheet,
               private materialColorService: MaterialColorService,
               private materialIconService: MaterialIconService,
-              private fundingService: FundingService,
+              private fundingFirestoreService: FundingFirestoreService,
+              private fundingMockService: FundingMockService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -102,7 +104,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
    * Initializes subscriptions
    */
   private initializeSubscriptions() {
-    this.fundingService.fundingsSubject.pipe(
+    this.fundingFirestoreService.fundingsSubject.pipe(
+      takeUntil(this.unsubscribeSubject),
+      filter(value => value != null)
+    ).subscribe(value => {
+      this.onFundingsUpdated(value as Funding);
+    });
+
+    this.fundingMockService.fundingsSubject.pipe(
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
@@ -208,9 +217,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
    */
   private findEntities(forceReload = false) {
     if (environment.mock) {
-      this.fundingService.mockFundings();
+      this.fundingMockService.fetchFundings();
     } else {
-      this.fundingService.fetchFundings();
+      this.fundingFirestoreService.fetchFunding(this.id!);
     }
   }
 }

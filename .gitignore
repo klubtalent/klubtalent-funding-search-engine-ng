@@ -48,3 +48,8 @@ firebase-debug.log
 .firebase
 
 /reports
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
