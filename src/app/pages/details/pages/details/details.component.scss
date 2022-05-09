@@ -2,7 +2,7 @@
 @import '../../../../../styles';
 @import '../../../../../flex';
 
-.content {
+.content-details {
   @media #{$breakpoint-small} {
     margin: 0 auto;
     padding: 10px;
@@ -35,7 +35,7 @@
   width: 100%;
 }
 
-::ng-deep .mat-card-image {
+::ng-deep .content-details .mat-card-image {
   margin: 0 !important;
 }
 

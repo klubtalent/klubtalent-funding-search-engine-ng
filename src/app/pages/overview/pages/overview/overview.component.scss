@@ -25,7 +25,7 @@
   background: mat.get-color-from-palette($klubtalent-green-primary, 50);
 }
 
-.content, .toolbar {
+.content-overview, .toolbar {
   @media #{$breakpoint-small} {
     margin: 10px;
     padding-bottom: 20px;
