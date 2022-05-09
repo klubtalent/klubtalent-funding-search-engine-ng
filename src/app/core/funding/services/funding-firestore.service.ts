@@ -38,6 +38,7 @@ export class FundingFirestoreService {
         funding.types = funding.types.map(type => {
           return type.replace(/(^"|"$)/g, '').trim();
         });
+        funding.volume = +funding.volume;
         funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
 
         this.fundingsSubject.next(funding);

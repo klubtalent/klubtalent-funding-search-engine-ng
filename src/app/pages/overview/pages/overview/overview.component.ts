@@ -57,7 +57,11 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   /** Filter values for types */
   typesValuesMap: Map<string, [string, boolean, boolean]> = new Map<string, [string, boolean, boolean]>();
   /** Filter value for volume */
-  volumeLimit = 0;
+  volumeLimit: number = 0;
+  /** Min filter value for volume */
+  volumeMin: number = 0;
+  /** Max filter value for volume */
+  volumeMax: number  = 0;
 
   /** Background color for sports */
   public sportsBackgroundColor = 'transparent';
@@ -247,7 +251,9 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
     this.sportsValuesMap = new Map(this.sportsValuesMap);
     this.typesValuesMap = new Map(this.typesValuesMap);
 
-    this.volumeLimit = this.getVolumeMin();
+    // this.volumeLimit = this.getVolumeMin();
+    this.volumeMin = this.getVolumeMin();
+    this.volumeMax = this.getVolumeMax();
   }
 
   //
