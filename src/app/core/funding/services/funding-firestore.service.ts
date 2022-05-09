@@ -50,6 +50,10 @@ export class FundingFirestoreService {
   // Helpers
   //
 
+  /**
+   * Pre-processes funding item
+   * @param funding funding item
+   */
   private static preProcessFunding(funding: Funding): Funding {
     funding.sports = funding.sports.map(sport => {
       return sport.replace(/(^"|"$)/g, '').trim();
