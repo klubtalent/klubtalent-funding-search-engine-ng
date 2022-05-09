@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {collection, doc, Firestore, getDoc, getDocs} from "@angular/fire/firestore";
 import {Subject} from "rxjs";
 import {Funding} from "../model/funding.model";
 import {environment} from "../../../../environments/environment";
@@ -29,17 +28,7 @@ export class FundingFirestoreService {
   fetchFundings() {
     this.firestore.collection("fundings").valueChanges().subscribe(documents => {
       documents.forEach((document: any) => {
-        const funding = document as Funding;
-        funding.sports = funding.sports.map(sport => {
-          return sport.replace(/(^"|"$)/g, '').trim();
-        }).filter(sport => {
-          return sport.trim().length > 0;
-        });
-        funding.types = funding.types.map(type => {
-          return type.replace(/(^"|"$)/g, '').trim();
-        });
-        funding.volume = +funding.volume;
-        funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
+        const funding = FundingFirestoreService.preProcessFunding(document as Funding);
 
         this.fundingsSubject.next(funding);
       });
@@ -51,16 +40,28 @@ export class FundingFirestoreService {
    */
   fetchFunding(id: string) {
     this.firestore.doc<Funding>(`fundings/${id}`).valueChanges().subscribe(document => {
-        const funding = document as Funding;
-        funding.sports.map(sport => {
-          return sport.replace(/(^"|"$)/g, '').trim();
-        });
-        funding.types.map(type => {
-          return type.replace(/(^"|"$)/g, '').trim();
-        });
-        funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
+      const funding = FundingFirestoreService.preProcessFunding(document as Funding);
 
-        this.fundingsSubject.next(funding);
+      this.fundingsSubject.next(funding);
     });
+  }
+
+  //
+  // Helpers
+  //
+
+  private static preProcessFunding(funding: Funding): Funding {
+    funding.sports = funding.sports.map(sport => {
+      return sport.replace(/(^"|"$)/g, '').trim();
+    }).filter(sport => {
+      return sport.trim().length > 0;
+    });
+    funding.types = funding.types.map(type => {
+      return type.replace(/(^"|"$)/g, '').trim();
+    });
+    funding.volume = +funding.volume;
+    funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
+
+    return funding;
   }
 }
