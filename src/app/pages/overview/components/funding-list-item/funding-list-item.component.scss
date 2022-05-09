@@ -10,3 +10,7 @@
   max-height: 200px;
   object-fit: cover
 }
+
+::ng-deep .funding .mat-card-actions {
+  margin: 0 !important;
+}
