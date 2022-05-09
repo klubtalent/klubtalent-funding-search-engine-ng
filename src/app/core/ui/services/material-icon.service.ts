@@ -63,7 +63,7 @@ export class MaterialIconService {
    * @param value value
    */
   getSportsIcon(value: string) {
-    switch (value.trim()) {
+    switch (value) {
       case "Badminton": return "badminton";
       case "Baseball": return "baseball";
       case "Basketball": return "basketball";
@@ -105,7 +105,7 @@ export class MaterialIconService {
    * @param value value
    */
   getTypesIcon(value: string) {
-    switch (value.trim()) {
+    switch (value) {
       default: return "";
     }
   }

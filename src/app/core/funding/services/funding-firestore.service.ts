@@ -30,10 +30,12 @@ export class FundingFirestoreService {
     this.firestore.collection("fundings").valueChanges().subscribe(documents => {
       documents.forEach((document: any) => {
         const funding = document as Funding;
-        funding.sports.map(sport => {
+        funding.sports = funding.sports.map(sport => {
           return sport.replace(/(^"|"$)/g, '').trim();
+        }).filter(sport => {
+          return sport.trim().length > 0;
         });
-        funding.types.map(type => {
+        funding.types = funding.types.map(type => {
           return type.replace(/(^"|"$)/g, '').trim();
         });
         funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
