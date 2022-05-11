@@ -6,6 +6,101 @@
 
 @include mat.core();
 
+::ng-deep .klubtalent-blue-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
+  }
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-blue-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-dark-blue-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-dark-blue-primary, 900);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-dark-blue-primary, 900);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-dark-blue-primary, 50);
+  }
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-dark-blue-primary, 900);
+  }
+}
+
+::ng-deep .klubtalent-purple-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
+  }
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-purple-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-yellow-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
+  }
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-yellow-primary, 500);
+  }
+}
+
+::ng-deep .klubtalent-green-theme {
+  .logo-letter {
+    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
+  }
+
+  .title {
+    color: mat.get-color-from-palette($klubtalent-green-primary, 500);
+    margin: 8px;
+  }
+
+  .mat-toolbar {
+    background: mat.get-color-from-palette($klubtalent-green-primary, 50);
+  }
+
+  .menu-icon svg {
+    fill: mat.get-color-from-palette($klubtalent-green-primary, 500);
+  }
+}
+
 .content {
   width: 100%;
 
