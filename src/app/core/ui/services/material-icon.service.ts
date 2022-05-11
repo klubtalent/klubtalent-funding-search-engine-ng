@@ -77,7 +77,7 @@ export class MaterialIconService {
       case "Fußball": return "soccer";
       case "Golf": return "golf";
       case "Handball": return "handball";
-      case "Hockey": return "hockey";
+      case "Hockey": return "hockey-sticks";
       case "Joggen": return "run";
       case "Kampfsport": return "karate";
       case "Karate": return "karate";

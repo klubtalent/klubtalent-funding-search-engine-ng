@@ -5,26 +5,6 @@
 @import '../../../../../styles';
 @import '../../../../../sizes';
 
-.klubtalent-blue-theme {
-  background: mat.get-color-from-palette($klubtalent-blue-primary, 50);
-}
-
-.klubtalent-dark-blue-theme {
-  background: mat.get-color-from-palette($klubtalent-dark-blue-primary, 50);
-}
-
-.klubtalent-purple-theme {
-  background: mat.get-color-from-palette($klubtalent-purple-primary, 50);
-}
-
-.klubtalent-yellow-theme {
-  background: mat.get-color-from-palette($klubtalent-yellow-primary, 50);
-}
-
-.klubtalent-green-theme {
-  background: mat.get-color-from-palette($klubtalent-green-primary, 50);
-}
-
 .content-overview, .toolbar {
   @media #{$breakpoint-small} {
     margin: 10px;
