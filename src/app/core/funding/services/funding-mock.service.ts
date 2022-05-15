@@ -23,7 +23,7 @@ export class FundingMockService {
       'name = "Lorem Ipsum Funding"\n' +
       'region = "Berlin"\n' +
       'sports = ["Basketball"]\n' +
-      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
+      'subject = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'types = ["Ausrüstung"]\n' +
       'volume = 10000\n' +
       'url = "https://klubtalent.org"\n' +
@@ -38,7 +38,7 @@ export class FundingMockService {
       'name = "Ipsum Lorem Funding"\n' +
       'region = "Ingolstadt"\n' +
       'sports = ["Fußball","Yoga"]\n' +
-      'text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
+      'subject = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."\n' +
       'types = ["Ausrüstung", "Beratung"]\n' +
       'volume = 20000\n' +
       'url = "https://klubtalent.org"\n' +
@@ -106,8 +106,8 @@ export class FundingMockService {
         if (key === 'volume') {
           funding.volume = +value;
         }
-        if (key === 'text') {
-          funding.text = value.replace(/['"]+/g, '');
+        if (key === 'subject') {
+          funding.subject = value.replace(/['"]+/g, '');
         }
         if (key === 'image') {
           funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;

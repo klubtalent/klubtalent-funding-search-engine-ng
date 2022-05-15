@@ -55,14 +55,19 @@ export class FundingFirestoreService {
    * @param funding funding item
    */
   private static preProcessFunding(funding: Funding): Funding {
-    funding.sports = funding.sports.map(sport => {
+    funding.sports = funding.sports.filter(sport => {
+      return sport.length > 0;
+    }).map(sport => {
       return sport.replace(/(^"|"$)/g, '').trim();
     }).filter(sport => {
       return sport.trim().length > 0;
-    });
-    funding.types = funding.types.map(type => {
+    }).sort();
+
+    funding.types = funding.types.filter(type => {
+      return type.length > 0;
+    }).map(type => {
       return type.replace(/(^"|"$)/g, '').trim();
-    });
+    }).sort();
     funding.volume = +funding.volume;
     funding.image = `${environment.cmsUploadUrl}${funding.image.replace(/"/g, "")}`;
 

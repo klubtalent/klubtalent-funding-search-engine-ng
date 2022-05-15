@@ -82,6 +82,10 @@ export class SelectableTagChipsComponent implements OnChanges {
     this.selectableTagsMap.forEach((value: [string, boolean, boolean], key: string) => {
       this.selectableTags.push(new SelectableTag(key, value[0], value[1], value[2]));
     });
+
+    this.selectableTags.sort((a: SelectableTag, b: SelectableTag) => {
+      return a.name.localeCompare(b.name);
+    });
   }
 
   //
