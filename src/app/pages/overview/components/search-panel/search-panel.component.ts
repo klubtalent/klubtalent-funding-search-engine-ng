@@ -35,6 +35,9 @@ export class SearchPanelComponent {
   /** Event emitter indicating filter value being changed */
   @Output() volumeSelectedEmitter = new EventEmitter<number>();
 
+  /** Number */
+  num = Number;
+
   /**
    * Handles selection of sports
    * @param event map of sports

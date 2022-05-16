@@ -1,25 +1,31 @@
 <div class="content">
+  <ng-container *ngIf="sportsValuesMap.size > 0">
     <h4>Sportart</h4>
     <app-search-panel-topics [valuesMap]="sportsValuesMap"
                              [border]="sportsBackgroundColor"
                              [background]="sportsBackgroundColor"
                              (tagsChangedEmitter)="onSportsSelected($event)">
     </app-search-panel-topics>
+  </ng-container>
+  <ng-container *ngIf="typesValuesMap.size > 0">
     <h4>Förderart</h4>
     <app-search-panel-topics [valuesMap]="typesValuesMap"
                              [border]="typesBackgroundColor"
                              [background]="typesBackgroundColor"
                              (tagsChangedEmitter)="onTypesSelected($event)">
     </app-search-panel-topics>
+  </ng-container>
+  <ng-container *ngIf="volumeMin != num.MAX_VALUE && volumeMax != num.MIN_VALUE">
     <div class="flexcontainer">
-        <div class="flexbox">
-            <h4>Fördervolumen</h4>
-            <app-search-panel-volume [volumeValue]="volumeValue"
-                                     [volumeMin]="volumeMin"
-                                     [volumeMax]="volumeMax"
-                                     [volumeColor]="volumeColor"
-                                     (valueChangedEmitter)="onPriceSelected($event)">
-            </app-search-panel-volume>
-        </div>
+      <div class="flexbox">
+        <h4>Fördervolumen</h4>
+        <app-search-panel-volume [volumeValue]="volumeValue"
+                                 [volumeMin]="volumeMin"
+                                 [volumeMax]="volumeMax"
+                                 [volumeColor]="volumeColor"
+                                 (valueChangedEmitter)="onPriceSelected($event)">
+        </app-search-panel-volume>
+      </div>
     </div>
+  </ng-container>
 </div>
