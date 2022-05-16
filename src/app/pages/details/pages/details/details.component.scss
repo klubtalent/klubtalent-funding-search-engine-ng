@@ -1,6 +1,10 @@
+@use '../../../../../../node_modules/@angular/material/index' as mat;
+
 @import '../../../../../sizes';
 @import '../../../../../styles';
 @import '../../../../../flex';
+
+@include mat.core();
 
 .content-details {
   @media #{$breakpoint-small} {
@@ -33,6 +37,7 @@
   0 1px 3px 0 rgba(0, 0, 0, 0.12);
 
   width: 100%;
+  background: white;
 }
 
 ::ng-deep .content-details .mat-card-image {
@@ -60,4 +65,14 @@
 
 .align-top {
   margin-top: -4px;
+}
+
+.section-icon {
+  margin-right: 16px;
+  vertical-align: sub;
+}
+
+.updated-at {
+  margin-top: 60px;
+  color: mat.get-color-from-palette(mat.$grey-palette, 600);
 }

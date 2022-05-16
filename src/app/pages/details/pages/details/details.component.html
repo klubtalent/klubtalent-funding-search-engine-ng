@@ -34,22 +34,51 @@
     <app-tag-chips [tags]="funding.types" [icons]="typesIcons" [readonly]="true" [background]="typesBackgroundColor"
                    [color]="typesTextColor"></app-tag-chips>
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.subject != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'clipboard-check-outline'" class="section-icon"></mat-icon>
+      <span>Fördergegenstand</span>
+    </h3>
     {{ funding.subject }}
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.target != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'account-group'" class="section-icon"></mat-icon>
+      <span>Fördergeldempfänger</span>
+    </h3>
     {{ funding.target }}
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.hints != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'information-outline'" class="section-icon"></mat-icon>
+      <span>Hinweise</span>
+    </h3>
     {{ funding.hints }}
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.equity != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'cash-check'" class="section-icon"></mat-icon>
+      <span>Eigenmittel</span>
+    </h3>
     {{ funding.equity }}
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.financing != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'cash-plus'" class="section-icon"></mat-icon>
+      <span>Finanzierung</span>
+    </h3>
     {{ funding.financing }}
   </div>
-  <div class="funding-detailed-information">
+  <div *ngIf="funding.deadline != null" class="funding-detailed-information">
+    <h3>
+      <mat-icon [svgIcon]="'clock-alert-outline'" class="section-icon"></mat-icon>
+      <span>Antragsfrist</span>
+    </h3>
     {{ funding.deadline }}
+  </div>
+
+  <div *ngIf="funding.updated != null" class="funding-detailed-information flexcontainer">
+    <div class="flexbox"></div>
+    <span class="updated-at">Informationen abgerufen am {{ funding.updated }}</span>
   </div>
 </div>

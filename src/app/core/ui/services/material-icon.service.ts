@@ -56,6 +56,13 @@ export class MaterialIconService {
     iconRegistry.addSvgIcon('web', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/web.svg'));
     iconRegistry.addSvgIcon('phone', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/phone.svg'));
     iconRegistry.addSvgIcon('email-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/email-outline.svg'));
+
+    iconRegistry.addSvgIcon('clipboard-check-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/clipboard-check-outline.svg'));
+    iconRegistry.addSvgIcon('account-group', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/account-group.svg'));
+    iconRegistry.addSvgIcon('information-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/information-outline.svg'));
+    iconRegistry.addSvgIcon('cash-plus', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/cash-plus.svg'));
+    iconRegistry.addSvgIcon('cash-check', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/cash-check.svg'));
+    iconRegistry.addSvgIcon('clock-alert-outline', sanitizer.bypassSecurityTrustResourceUrl('assets/material-icons/clock-alert-outline.svg'));
   }
 
   /**
