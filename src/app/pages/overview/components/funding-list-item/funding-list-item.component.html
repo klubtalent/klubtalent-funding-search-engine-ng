@@ -1,6 +1,6 @@
 <div class="container">
   <mat-card class="funding">
-    <img *ngIf="funding.image !== ''" mat-card-image alt="funding image" [attr.data-src]="funding.image" class="funding-image">
+    <img *ngIf="funding.image !== ''" mat-card-image alt="funding image" [attr.data-src]="funding.image" class="funding-image lazyload">
     <mat-card-title>{{ funding.name }}</mat-card-title>
     <mat-card-subtitle>
       {{ funding.subject }}
