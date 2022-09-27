@@ -52,3 +52,13 @@ body {
 ::ng-deep .mat-bottom-sheet-container {
   background: white;
 }
+
+.lazyload,
+.lazyloading {
+  opacity: 0.7;
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 2000ms;
+}

@@ -4,7 +4,7 @@
 
 <div *ngIf="funding != null" class="content-details">
   <img *ngIf="funding.image !== ''" mat-card-image class="funding-banner"
-       [attr.src]="funding.image">
+       [attr.data-src]="funding.image">
   <div class="funding-basic-information flexcontainer">
     <mat-chip-list>
       <app-tag-chip *ngIf="funding.region !== ''"
