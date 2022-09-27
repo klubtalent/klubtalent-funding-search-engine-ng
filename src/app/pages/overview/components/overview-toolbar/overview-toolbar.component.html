@@ -6,10 +6,10 @@
     </div>
     <span class="title" *ngIf="media > mediaType.SMALL" [@logoAnimation]="logoState">| Fördergeld-Suchmachine</span>
     <div class="flexbox"></div>
-    <button mat-button class="toolbar-menu-item" (click)="onFilterClicked()">
+    <button mat-button class="toolbar-menu-item" aria-label="search" (click)="onFilterClicked()">
       <mat-icon [svgIcon]="'search'"></mat-icon>
     </button>
-    <button mat-button [@searchResetButtonAnimation]="searchPanelState" (click)="onResetFilterClicked()">
+    <button mat-button aria-label="reset filter" [@searchResetButtonAnimation]="searchPanelState" (click)="onResetFilterClicked()">
       <span *ngIf="media > mediaType.SMALL">FILTER ZURÜCKSETZEN</span>
       <mat-icon *ngIf="media < mediaType.MEDIUM" [svgIcon]="'filter-off-outline'"></mat-icon>
     </button>
