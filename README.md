@@ -1,4 +1,5 @@
 [![Build](https://github.com/klubtalent/klubtalent-funding-search-engine-ng/actions/workflows/build-app-workflow.yml/badge.svg?branch=main)](https://github.com/klubtalent/klubtalent-funding-search-engine-ng/actions/workflows/build-app-workflow.yml)
+[![Lighthouse](https://github.com/klubtalent/klubtalent-funding-search-engine-ng/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/klubtalent/klubtalent-funding-search-engine-ng/actions/workflows/lighthouse.yml)
 [![Issues](https://img.shields.io/github/issues/klubtalent/klubtalent-funding-search-engine-ng)](https://github.com/klubtalent/klubtalent-funding-search-engine-ng/issues)
 
 <br />
