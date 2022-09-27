@@ -108,14 +108,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
-      this.onFundingsUpdated(value as Funding);
+      this.onFundingsUpdated(value[0] as Funding);
     });
 
     this.fundingMockService.fundingsSubject.pipe(
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
-      this.onFundingsUpdated(value as Funding);
+      this.onFundingsUpdated(value[0] as Funding);
     });
   }
 
