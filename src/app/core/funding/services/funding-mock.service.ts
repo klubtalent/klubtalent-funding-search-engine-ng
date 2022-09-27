@@ -12,7 +12,7 @@ import {Funding} from "../model/funding.model";
 export class FundingMockService {
 
   /** Fundings subject */
-  fundingsSubject = new Subject<Funding>();
+  fundingsSubject = new Subject<Funding[]>();
 
   /**
    * Fetches funding items via Github API
@@ -31,7 +31,6 @@ export class FundingMockService {
       'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
     const funding1: Funding = this.parseContent("lorem-ipsum.md", content1);
-    this.fundingsSubject.next(funding1);
 
     const content2 = '+++\n' +
       'image = "/uploads/screenshot-2022-04-24-at-17-06-12.png"\n' +
@@ -46,7 +45,8 @@ export class FundingMockService {
       'mail = "kontakt@klubtalent.org"\n\n' +
       '+++';
     const funding2: Funding = this.parseContent("ipsum-lorem.md", content2);
-    this.fundingsSubject.next(funding2);
+
+    this.fundingsSubject.next([funding1, funding2]);
   }
 
 

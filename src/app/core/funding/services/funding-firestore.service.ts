@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Funding} from "../model/funding.model";
 import {environment} from "../../../../environments/environment";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {collection, doc, DocumentData, Firestore, onSnapshot, query} from "@angular/fire/firestore";
 
 /**
  * Loads fundings via Firebase
@@ -12,37 +12,42 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 })
 export class FundingFirestoreService {
 
+  /** Collection name */
+  collectionName = "fundings";
+
   /** Fundings subject */
-  fundingsSubject = new Subject<Funding>();
+  fundingsSubject = new Subject<Funding[]>();
 
   /**
    * Constructor
    * @param firestore firestore
    */
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: Firestore) {
   }
 
   /**
    * Fetches funding items via Firebase
    */
   fetchFundings() {
-    this.firestore.collection("fundings").valueChanges().subscribe(documents => {
-      documents.forEach((document: any) => {
-        const funding = FundingFirestoreService.preProcessFunding(document as Funding);
-
-        this.fundingsSubject.next(funding);
+    return onSnapshot(query(collection(this.firestore, this.collectionName)),
+      (querySnapshot) => {
+        const fundings: DocumentData[] = [];
+        querySnapshot.forEach((doc) => {
+          fundings.push(doc.data());
+          fundings.map(funding => {
+            FundingFirestoreService.preProcessFunding(funding as Funding);
+          })
+        });
+        this.fundingsSubject.next(fundings as Funding[]);
       });
-    });
   }
 
   /**
    * Fetches funding item via Firebase
    */
   fetchFunding(id: string) {
-    this.firestore.doc<Funding>(`fundings/${id}`).valueChanges().subscribe(document => {
-      const funding = FundingFirestoreService.preProcessFunding(document as Funding);
-
-      this.fundingsSubject.next(funding);
+    return onSnapshot(doc(this.firestore, this.collectionName, id), (doc) => {
+      this.fundingsSubject.next([doc.data() as Funding]);
     });
   }
 

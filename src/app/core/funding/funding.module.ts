@@ -10,7 +10,7 @@ import {FundingMockService} from "./services/funding-mock.service";
   declarations: [],
   imports: [
     CommonModule
-  ], exports: [
+  ], providers: [
     FundingFirestoreService,
     FundingGithubService,
     FundingMockService,

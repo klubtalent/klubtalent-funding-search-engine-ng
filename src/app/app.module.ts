@@ -10,7 +10,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
-import {FIREBASE_OPTIONS} from "@angular/fire/compat";
+import {FundingModule} from "./core/funding/funding.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +21,10 @@ import {FIREBASE_OPTIONS} from "@angular/fire/compat";
     BrowserAnimationsModule,
     HttpClientModule,
 
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+
+    FundingModule,
     UiModule,
 
     AppRoutingModule,
@@ -29,12 +33,7 @@ import {FIREBASE_OPTIONS} from "@angular/fire/compat";
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    }),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
-  ],
-  providers: [
-    {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
+    })
   ],
   bootstrap: [AppComponent]
 })

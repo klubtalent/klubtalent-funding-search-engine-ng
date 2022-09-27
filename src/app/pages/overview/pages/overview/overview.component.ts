@@ -61,7 +61,7 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
   /** Min filter value for volume */
   volumeMin: number = 0;
   /** Max filter value for volume */
-  volumeMax: number  = 0;
+  volumeMax: number = 0;
 
   /** Background color for sports */
   public sportsBackgroundColor = 'transparent';
@@ -146,33 +146,37 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
-      this.onFundingsUpdated(value as Funding);
+      this.onFundingsUpdated(value as Funding[]);
     });
 
     this.fundingMockService.fundingsSubject.pipe(
       takeUntil(this.unsubscribeSubject),
       filter(value => value != null)
     ).subscribe(value => {
-      this.onFundingsUpdated(value as Funding);
+      this.onFundingsUpdated(value as Funding[]);
     });
   }
 
   /**
    * Initializes fundings
-   * @param funding funding
+   * @param fundings fundings
    */
-  private initializeFundings(funding: Funding) {
-    this.fundingsMap.set(funding.id, funding);
-    this.fundingsMap = new Map(this.fundingsMap);
+  private initializeFundings(fundings: Funding[]) {
+    fundings.forEach(funding => {
+      this.fundingsMap.set(funding.id, funding);
+      this.fundingsMap = new Map(this.fundingsMap);
+    });
   }
 
   /**
    * Initializes sports
-   * @param funding funding
+   * @param fundings fundings
    */
-  private initializeSports(funding: Funding) {
-    funding.sports.forEach(sport => {
-      this.selectableSportsMap.set(sport, new SelectableSport(sport));
+  private initializeSports(fundings: Funding[]) {
+    fundings.forEach(funding => {
+      funding.sports.forEach(sport => {
+        this.selectableSportsMap.set(sport, new SelectableSport(sport));
+      });
     });
 
     this.selectableSportsMap = new Map(this.selectableSportsMap);
@@ -180,11 +184,13 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Initializes types
-   * @param funding funding
+   * @param fundings fundings
    */
-  private initializeTypes(funding: Funding) {
-    funding.types.forEach(type => {
-      this.selectableTypesMap.set(type, new SelectableType(type));
+  private initializeTypes(fundings: Funding[]) {
+    fundings.forEach(funding => {
+      funding.types.forEach(type => {
+        this.selectableTypesMap.set(type, new SelectableType(type));
+      });
     });
 
     this.selectableTypesMap = new Map(this.selectableTypesMap);
@@ -262,12 +268,12 @@ export class OverviewComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Handles fundings being loaded
-   * @param funding funding
+   * @param fundings fundings
    */
-  onFundingsUpdated(funding: Funding) {
-    this.initializeFundings(funding);
-    this.initializeSports(funding);
-    this.initializeTypes(funding);
+  onFundingsUpdated(fundings: Funding[]) {
+    this.initializeFundings(fundings);
+    this.initializeSports(fundings);
+    this.initializeTypes(fundings);
 
     this.initializeFilters();
     this.initializeFundingsFiltered(this.fundingsMap);
