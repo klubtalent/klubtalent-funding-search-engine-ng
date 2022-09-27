@@ -24,6 +24,11 @@ import {Subject} from "rxjs";
         overflow: 'hidden',
         width: '0px'
       })),
+      state('*', style({
+        opacity: '0',
+        overflow: 'hidden',
+        width: '0px'
+      })),
       transition('* => *', animate('250ms ease-in-out'))
     ]),
     trigger('logoAnimation', [
@@ -33,6 +38,11 @@ import {Subject} from "rxjs";
         width: '*'
       })),
       state('logo-closed', style({
+        opacity: '0',
+        overflow: 'hidden',
+        width: '0px'
+      })),
+      state('*', style({
         opacity: '0',
         overflow: 'hidden',
         width: '0px'

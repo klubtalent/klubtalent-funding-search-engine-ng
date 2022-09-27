@@ -20,6 +20,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         overflow: 'hidden',
         width: '0px'
       })),
+      state('*', style({
+        opacity: '0',
+        overflow: 'hidden',
+        width: '0px'
+      })),
       transition('* => *', animate('250ms ease-in-out'))
     ])
   ]
