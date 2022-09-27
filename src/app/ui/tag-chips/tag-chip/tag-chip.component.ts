@@ -20,11 +20,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         overflow: 'hidden',
         width: '0px'
       })),
-      state('*', style({
-        opacity: '0',
-        overflow: 'hidden',
-        width: '0px'
-      })),
       transition('* => *', animate('250ms ease-in-out'))
     ])
   ]
@@ -48,7 +43,7 @@ export class TagChipComponent implements OnInit {
   /** Whether text animation is enabled or not */
   @Input() tagTextAnimationEnabled = false;
   /** State of the text animation */
-  @Input() tagTextAnimationState = 'open';
+  @Input() tagTextAnimationState = 'closed';
 
   //
   // Lifecycle hooks
