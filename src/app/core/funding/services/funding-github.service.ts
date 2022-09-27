@@ -338,9 +338,6 @@ export class FundingGithubService {
         if (key === 'volume') {
           funding.volume = +value;
         }
-        if (key === 'text') {
-          funding.text = value.replace(/['"]+/g, '');
-        }
         if (key === 'image') {
           funding.image = `${environment.cmsUploadUrl}${value.replace(/"/g, "")}`;
         }
