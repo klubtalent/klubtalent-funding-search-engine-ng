@@ -9,7 +9,7 @@ import {UiModule} from "./core/ui/ui.module";
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
-import {getFirestore, provideFirestore} from '@angular/fire/firestore';
+import {getFirestore, provideFirestore} from '@angular/fire/firestore/lite';
 import {FundingModule} from "./core/funding/funding.module";
 
 @NgModule({

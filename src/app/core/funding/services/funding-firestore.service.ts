@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from "rxjs";
 import {Funding} from "../model/funding.model";
 import {environment} from "../../../../environments/environment";
-import {collection, doc, DocumentData, Firestore, onSnapshot, query} from "@angular/fire/firestore";
+import {collection, doc, DocumentData, Firestore, getDoc, getDocs, query} from "@angular/fire/firestore/lite";
 
 /**
  * Loads fundings via Firebase
@@ -29,14 +29,23 @@ export class FundingFirestoreService {
    * Fetches funding items via Firebase
    */
   fetchFundings() {
-    return onSnapshot(query(collection(this.firestore, this.collectionName)),
-      (querySnapshot) => {
+    // return onSnapshot(query(collection(this.firestore, this.collectionName)),
+    //   (querySnapshot) => {
+    //     const fundings: DocumentData[] = [];
+    //     querySnapshot.forEach((doc) => {
+    //       fundings.push(doc.data());
+    //       fundings.map(funding => {
+    //         FundingFirestoreService.preProcessFunding(funding as Funding);
+    //       })
+    //     });
+    //     this.fundingsSubject.next(fundings as Funding[]);
+    //   });
+
+    getDocs(query(collection(this.firestore, this.collectionName)))
+      .then((querySnapshot) => {
         const fundings: DocumentData[] = [];
         querySnapshot.forEach((doc) => {
           fundings.push(doc.data());
-          fundings.map(funding => {
-            FundingFirestoreService.preProcessFunding(funding as Funding);
-          })
         });
         this.fundingsSubject.next(fundings as Funding[]);
       });
@@ -46,8 +55,12 @@ export class FundingFirestoreService {
    * Fetches funding item via Firebase
    */
   fetchFunding(id: string) {
-    return onSnapshot(doc(this.firestore, this.collectionName, id), (doc) => {
-      this.fundingsSubject.next([doc.data() as Funding]);
+    // return onSnapshot(doc(this.firestore, this.collectionName, id), (doc) => {
+    //   this.fundingsSubject.next([doc.data() as Funding]);
+    // });
+
+    getDoc(doc(this.firestore, this.collectionName, id)).then((querySnapshot) => {
+      this.fundingsSubject.next([querySnapshot.data() as Funding]);
     });
   }
 
