@@ -8,9 +8,6 @@ import {TagChipComponent} from "./tag-chip/tag-chip.component";
 @NgModule({
   imports: [TagChipsImports],
   declarations: [TagChipsDeclarations],
-  entryComponents: [
-    TagChipsComponent
-  ],
   exports: [
     TagChipsComponent,
     SelectableTagChipsComponent,
