@@ -6,7 +6,7 @@
   <img *ngIf="funding.image !== ''" mat-card-image class="funding-banner"
        [attr.data-src]="funding.image">
   <div class="funding-basic-information flexcontainer">
-    <mat-chip-list>
+    <mat-chip-list aria-label="chip list">
       <app-tag-chip *ngIf="funding.region !== ''"
                     [title]="funding.region"
                     [background]="'transparent'"
@@ -14,7 +14,7 @@
       </app-tag-chip>
     </mat-chip-list>
     <div class="flexbox"></div>
-    <mat-chip-list>
+    <mat-chip-list aria-label="chip list">
       <app-tag-chip *ngIf="funding.volume !== 0"
                     [title]="funding.volume.toString()"
                     [background]="'transparent'"

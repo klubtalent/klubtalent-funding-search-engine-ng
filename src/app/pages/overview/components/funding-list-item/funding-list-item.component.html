@@ -6,7 +6,7 @@
       {{ funding.subject }}
     </mat-card-subtitle>
     <mat-card-actions>
-      <mat-chip-list>
+      <mat-chip-list aria-label="chip list">
         <app-tag-chip *ngIf="funding.region !== ''"
                       [title]="funding.region"
                       [background]="'transparent'"
