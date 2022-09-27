@@ -9,7 +9,7 @@
                 [tagTextAnimationEnabled]="collapsedText">
   </app-tag-chip>
   <div *ngIf="!readonly" class="searchbox">
-    <input class="search-input" matInput name="search" type="text" [placeholder]="placeholder"
+    <input class="search-input" matInput name="search" type="text" [placeholder]="placeholder" aria-label="search"
            [ngModel]="value"
            [disabled]="readonly"
            [matAutocomplete]="auto"
