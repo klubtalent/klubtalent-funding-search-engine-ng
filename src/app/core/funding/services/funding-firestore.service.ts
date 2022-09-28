@@ -43,9 +43,9 @@ export class FundingFirestoreService {
 
     getDocs(query(collection(this.firestore, this.collectionName)))
       .then((querySnapshot) => {
-        const fundings: DocumentData[] = [];
+        const fundings: Funding[] = [];
         querySnapshot.forEach((doc) => {
-          fundings.push(doc.data());
+          fundings.push(FundingFirestoreService.preProcessFunding(doc.data() as Funding));
         });
         this.fundingsSubject.next(fundings as Funding[]);
       });
@@ -60,7 +60,7 @@ export class FundingFirestoreService {
     // });
 
     getDoc(doc(this.firestore, this.collectionName, id)).then((querySnapshot) => {
-      this.fundingsSubject.next([querySnapshot.data() as Funding]);
+      this.fundingsSubject.next([FundingFirestoreService.preProcessFunding(querySnapshot.data() as Funding)]);
     });
   }
 
